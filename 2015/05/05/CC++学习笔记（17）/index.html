@@ -1,0 +1,531 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>C/C++ 学习笔记（17） | superD&#39;s blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="superD">
+    
+    <meta name="description" content="C/C++ 学习笔记(Windows)##结构体##
+
+
+结构体是一种构造数据类型
+用途：把不同类型的数据组合成一个整体—是一种自定义数据类型
+
+
+###结构体变量定义###定义1struct 结构体名{    类型标示符  成员名;    类型标示符  成员名;};//此时定义的是结构体类型，不分">
+    
+    
+    
+    
+    <link rel="alternative" href="/atom.xml" title="superD&#39;s blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.svg" alt="superD&#39;s blog" title="superD&#39;s blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="superD&#39;s blog">superD&#39;s blog</a></h1>
+				<h2 class="blog-motto">Que sera sera.</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:yoursite.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/05/05/CC++学习笔记（17）/" title="C/C++ 学习笔记（17）" itemprop="url">C/C++ 学习笔记（17）</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="http://yoursite.com/about" title="superD" target="_blank" itemprop="author">superD</a>
+		
+  <p class="article-time">
+    <time datetime="2015-05-05T12:46:42.000Z" itemprop="datePublished"> 发表于 2015 May 5</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#C-C-学习笔记-Windows"><span class="toc-number">1.</span> <span class="toc-text">C/C++ 学习笔记(Windows)</span></a></li></ol>
+		
+		</div>
+		
+		<h1 id="C-C-学习笔记-Windows"><a href="#C-C-学习笔记-Windows" class="headerlink" title="C/C++ 学习笔记(Windows)"></a>C/C++ 学习笔记(Windows)</h1><p>##结构体##</p>
+<blockquote>
+<ul>
+<li>结构体是一种构造数据类型</li>
+<li>用途：把不同类型的数据组合成一个整体—是一种自定义数据类型</li>
+</ul>
+</blockquote>
+<p>###结构体变量定义###<br><strong>定义1</strong><br>struct 结构体名<br>{<br>    类型标示符  成员名;<br>    类型标示符  成员名;<br>};//此时定义的是结构体类型，不分配内存</p>
+<p>struct 结构体名 结构体变量名;//此时定义的是结构体变量，并为变量分配内存</p>
+<p><strong>定义2</strong><br>struct 结构体名<br>{<br>    类型标示符  成员名;<br>    类型标示符  成员名;<br>}变量名1,变量名2;</p>
+<p>注意：</p>
+<blockquote>
+<ul>
+<li>struct不能省略；结构体名可以省略，此时为无名结构体，不会出现重定义的问题；如果要引用结构体，要在定义结构体类型时，直接定义结构体变量。</li>
+<li>结构体类型不能赋值，存取，运算；结构体变量可以。</li>
+<li>结构体可嵌套</li>
+<li>结构体成员名可以与程序中变量名相同，不会混淆</li>
+<li>不要忘记结尾分号</li>
+</ul>
+</blockquote>
+<p>###结构体变量初始化###<br><strong>初始化1</strong><br>struct 结构体名<br>{<br>    类型标示符  成员名;<br>    类型标示符  成员名;<br>};<br>struct 结构体名 结构体变量={初始数据}；</p>
+<p><strong>初始化2</strong><br>struct 结构体名<br>{<br>    类型标示符  成员名;<br>    类型标示符  成员名;<br>}结构体变量={初始数据};</p>
+<p><strong>初始化3</strong><br>struct<br>{<br>    类型标示符  成员名;<br>    类型标示符  成员名;<br>}结构体变量={初数据};<br>注意：无名结构体只能这样定义无名结构体变量；否则无法访问成员变量。</p>
+<p><strong>注意：结构体类型定义的时候不能赋初值</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">define</span> _CRT_SECURE_NO_WARNINGS</span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></div><div class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span></span></div><div class="line"><span class="class">&#123;</span></div><div class="line">	<span class="keyword">int</span> num;</div><div class="line">	<span class="keyword">char</span> str[<span class="number">100</span>];</div><div class="line">&#125;ours;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">	ours o1 = &#123; <span class="number">100</span>, <span class="string">"hello china"</span> &#125;;</div><div class="line">	<span class="comment">//-------------给结构体o2赋值-----------</span></div><div class="line">	<span class="comment">//------------方式1----------------</span></div><div class="line">	ours o2 = o1;<span class="comment">//结构体可以整体赋值，即使包含字符串的时候</span></div><div class="line">	<span class="comment">//------------方式2----------------</span></div><div class="line">	ours o3;</div><div class="line">	o3.num = <span class="number">100</span>;</div><div class="line">	<span class="comment">//o3.str = o2.str;//错误方式，因为str是常量，但结构体整体赋值时是可以的</span></div><div class="line">	<span class="comment">//-----字符串赋值-----------</span></div><div class="line">	<span class="built_in">sprintf</span>(o3.str, o1.str);</div><div class="line">	<span class="comment">//strcpy(o3.str,o1.str);</span></div><div class="line">	<span class="comment">//---------------------------</span></div><div class="line">	<span class="built_in">printf</span>(<span class="string">"%d  %s\n"</span>, o3.num, o3.str);</div><div class="line">	system(<span class="string">"pause"</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>结构体可以嵌套定义</strong><br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//结构体嵌套定义</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> _CRT_SECURE_NO_WARNINGS</span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">A</span></span></div><div class="line"><span class="class">&#123;</span></div><div class="line">	<span class="keyword">int</span> data;</div><div class="line">	<span class="keyword">char</span> name[<span class="number">100</span>];</div><div class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">B</span>        //结构体内部再次定义一个结构体，但是没有创建结构体实例</span></div><div class="line"><span class="class">		                   //再次定义结构体内部的变量，会被当做母结构体的成员变量</span></div><div class="line"><span class="class">	&#123;</span></div><div class="line">		<span class="keyword">char</span> str[<span class="number">100</span>];</div><div class="line">		<span class="keyword">int</span> num;</div><div class="line">	&#125;;</div><div class="line"></div><div class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">C</span>        //结构体内部再次定义一个结构体，并创建了结构体变量，该变量会直接作为一个成员</span></div><div class="line"><span class="class">	&#123;</span></div><div class="line">		<span class="keyword">char</span> str1[<span class="number">100</span>];</div><div class="line">		<span class="keyword">int</span> num1;</div><div class="line">	&#125;C1;</div><div class="line"></div><div class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">C</span> <span class="title">C2</span>;</span></div><div class="line">&#125;;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">	<span class="comment">//结构体内部再次定义一个结构体，但是没有创建结构体实例</span></div><div class="line">	<span class="comment">//再次定义结构体内部的变量，会被当做母结构体的成员变量</span></div><div class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">A</span> <span class="title">t1</span>;</span></div><div class="line">	t1.data = <span class="number">100</span>;</div><div class="line">	t1.num = <span class="number">100</span>;</div><div class="line">	<span class="built_in">strcpy</span>(t1.name, <span class="string">"beijing"</span>);</div><div class="line">	<span class="built_in">strcpy</span>(t1.str, <span class="string">"beijing"</span>);<span class="comment">//不能利用结构体beijing来访问，也不能引用t1.beijing</span></div><div class="line">	<span class="built_in">printf</span>(<span class="string">"%d,%d,%s,%s\n"</span>, t1.data, t1.num, t1.name, t1.str);</div><div class="line">	</div><div class="line">	<span class="comment">//结构体内部再次定义一个结构体，并创建了结构体变量，该变量会直接作为一个成员</span></div><div class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">A</span> <span class="title">t2</span>;</span></div><div class="line">	t2.data = <span class="number">100</span>;</div><div class="line">	<span class="built_in">strcpy</span>(t2.name, <span class="string">"beijing"</span>);</div><div class="line">	t2.C1.num1 = <span class="number">100</span>;</div><div class="line">	<span class="built_in">strcpy</span>(t2.C1.str1, <span class="string">"beijing"</span>);</div><div class="line">	<span class="built_in">printf</span>(<span class="string">"%d,%d,%s,%s\n"</span>, t2.data, t2.C1.num1, t2.name, t2.C1.str1);</div><div class="line"></div><div class="line">	<span class="comment">//结构体内部再次定义一个结构体，并创建了内部结构体变量，该变量会直接作为一个成员</span></div><div class="line">	t2.C2.num1 = <span class="number">100</span>;</div><div class="line">	<span class="built_in">strcpy</span>(t2.C2.str1, <span class="string">"beijing"</span>);</div><div class="line">	<span class="built_in">printf</span>(<span class="string">"%d,%d,%s,%s\n"</span>, t2.data, t2.C2.num1, t2.name, t2.C2.str1);</div><div class="line"></div><div class="line">	getchar();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>###结构体数组###<br><strong>定义1</strong><br>struct A<br>{<br>    int data;<br>    char name[100];<br>};<br>struct A a[100];</p>
+<p><strong>定义2</strong><br>struct A<br>{<br>    int data;<br>    char name[100];<br>}a[100];</p>
+<p><strong>3</strong><br>struct  //无名结构体<br>{<br>    int data;<br>    char name[100];<br>}a[100];</p>
+<p>###结构体数组的初始化和引用###<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">data</span></span></div><div class="line"><span class="class">&#123;</span></div><div class="line">	<span class="keyword">int</span> num;</div><div class="line">	<span class="keyword">float</span> fl;</div><div class="line">	<span class="keyword">char</span> str[<span class="number">4</span>];</div><div class="line">&#125;d1[<span class="number">3</span>] = &#123; <span class="number">1</span>,<span class="number">1.0</span>,<span class="string">"1.0"</span>, <span class="number">2</span>,<span class="number">2.0</span>,<span class="string">"2.0"</span>, <span class="number">3</span>,<span class="number">3.0</span>,<span class="string">"3.0"</span> &#125;;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">	<span class="built_in">printf</span>(<span class="string">"%x\n"</span>, &amp;d1[<span class="number">0</span>]);</div><div class="line">	<span class="built_in">printf</span>(<span class="string">"%x\n"</span>, &amp;d1[<span class="number">1</span>]);</div><div class="line">	<span class="built_in">printf</span>(<span class="string">"%x\n"</span>, &amp;d1[<span class="number">2</span>]);<span class="comment">//结构体数组元素地址相差12个字节，在内存中顺序排列</span></div><div class="line">	<span class="built_in">printf</span>(<span class="string">"%d\n"</span>, <span class="keyword">sizeof</span>(struct data));<span class="comment">//12，结构体类型的大小</span></div><div class="line">	<span class="built_in">printf</span>(<span class="string">"%d\n"</span>, <span class="keyword">sizeof</span>(d1));<span class="comment">//36，结构体数组的大小</span></div><div class="line">	<span class="comment">//查找，结构体数组的引用</span></div><div class="line">	<span class="keyword">int</span> num = <span class="number">2</span>;</div><div class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++)</div><div class="line">	&#123;</div><div class="line">		<span class="keyword">if</span> (d1[i].num == num)</div><div class="line">		&#123;</div><div class="line">			<span class="built_in">printf</span>(<span class="string">"找到，num=%d,fl=%f,str=%s"</span>, d1[i].num, d1[i].fl, d1[i].str);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	getchar();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>###结构体与指针###<br><strong>指向结构体的指针</strong><br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">define</span>  _CRT_SECURE_NO_WARNINGS</span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">data</span></span></div><div class="line"><span class="class">&#123;</span></div><div class="line">	<span class="keyword">int</span> num;</div><div class="line">	<span class="keyword">char</span> str[<span class="number">100</span>];</div><div class="line">&#125;;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">data</span> <span class="title">mydata</span>;</span></div><div class="line">	mydata.num = <span class="number">100</span>;</div><div class="line">	<span class="built_in">sprintf</span>(mydata.str, <span class="string">"go"</span>);</div><div class="line"></div><div class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">data</span> *<span class="title">p</span>;</span></div><div class="line">	<span class="built_in">printf</span>(<span class="string">"%d\n"</span>, <span class="keyword">sizeof</span>(p));<span class="comment">//指向结构体的指针，占4个字节</span></div><div class="line">	p = &amp;mydata;<span class="comment">//p要指向结构体变量</span></div><div class="line">	<span class="built_in">printf</span>(<span class="string">"%d,%s"</span>, p-&gt;num, (*p).str);<span class="comment">//用指针访问结构体成员变量的两种方式</span></div><div class="line">	getchar();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>指向结构体数组的指针</strong><br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">data</span></span></div><div class="line"><span class="class">&#123;</span></div><div class="line">	<span class="keyword">int</span> num;</div><div class="line">	<span class="keyword">float</span> fl;</div><div class="line">	<span class="keyword">char</span> str[<span class="number">4</span>];</div><div class="line">&#125;d1[<span class="number">3</span>] = &#123; <span class="number">1</span>,<span class="number">1.0</span>,<span class="string">"1.0"</span>, <span class="number">2</span>,<span class="number">2.0</span>,<span class="string">"2.0"</span>, <span class="number">3</span>,<span class="number">3.0</span>,<span class="string">"3.0"</span> &#125;;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">	<span class="keyword">for</span> (struct data *p = d1; p &lt; d1+<span class="number">3</span>; p++)</div><div class="line">	&#123;</div><div class="line">		<span class="built_in">printf</span>(<span class="string">"num=%d,fl=%f,str=%s\n"</span>, (*p).num, (*p).fl, (*p).str);</div><div class="line">		<span class="built_in">printf</span>(<span class="string">"num=%d,fl=%f,str=%s\n"</span>, p-&gt;num, p-&gt;fl, p-&gt;str);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	getchar();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<blockquote>
+<ul>
+<li>用结构体变量的成员函数作参数—-值传递（会新建一个变量接收实际参数的值，原来的值不变）</li>
+<li>用指向结构体变量或数组的指针作参数—地址传递</li>
+<li>用结构体变量作参数—多值传递，效率低<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">data</span></span></div><div class="line"><span class="class">&#123;</span></div><div class="line">	<span class="keyword">int</span> num;</div><div class="line">	<span class="keyword">float</span> fl;</div><div class="line">	<span class="keyword">char</span> str[<span class="number">4</span>];</div><div class="line">&#125;d1[<span class="number">3</span>] = &#123; <span class="number">1</span>,<span class="number">1.0</span>,<span class="string">"1.0"</span>, <span class="number">2</span>,<span class="number">2.0</span>,<span class="string">"2.0"</span>, <span class="number">3</span>,<span class="number">3.0</span>,<span class="string">"3.0"</span> &#125;;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">change</span><span class="params">(struct data x[<span class="number">3</span>])</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">	<span class="built_in">printf</span>(<span class="string">"%d\n"</span>,<span class="keyword">sizeof</span>(<span class="string">"%d\n"</span>, x));<span class="comment">//参数传递的是地址</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">	<span class="built_in">printf</span>(<span class="string">"%d\n"</span>, <span class="keyword">sizeof</span>(d1));<span class="comment">//36</span></div><div class="line">	change(d1);<span class="comment">//4,参数传递的是地址</span></div><div class="line"></div><div class="line">	getchar();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</blockquote>
+<p>###结构体字节对齐###</p>
+<blockquote>
+<ul>
+<li>结构体变量占据的内存单元的个数应当大于等于其内部所有数据成员占据内存单元数的和。</li>
+<li>便于计算地址和寻址</li>
+<li>处于效率的考虑，C语言引入了字节对齐机制，不同编译器字节对齐机制有所不同，但有一下3条通用原则：</li>
+<li>(1)结构体变量的大小能够被其最宽基本类型成员的大小所整除；</li>
+<li>(2)结构体每个成员相对于结构体首地址的偏移量都是该成员大小的整数倍，如有需要编译器会在成员之间加上填充字节（每个数据成员都要满足是最宽数据成员的整数倍）；</li>
+<li>(3)结构体作为成员:如果一个结构里有某些结构体成员,则结构体成员要从其内部最大元素大小的整数倍地址开始存储.(struct a里存有struct b,b里有char,int ,double等元素,那b应该从8的整数倍开始存储.)</li>
+<li>(4)结构体的总大小为结构体最宽基本类型成员大小的整数倍，如有需要编译器会在最末一个成员之后加上填充字节”，共用体也满足这一原则。</li>
+<li>基本类型是指char,short,int,float,double这样的内置数据类型；数据宽度是指其sizeof的大小；结构体，共用体，数组都不是基本数据类型。</li>
+<li>#pragma pack()可以设置对齐值。Vc,Vs等编译器默认是#pragma pack(8)；gcc默认是#pragma pack(4)，并且gcc只支持1,2,4对齐。</li>
+<li>结构体内变量的排列最好按照占内存从小到大排列</li>
+</ul>
+</blockquote>
+<p> 先介绍四个概念：<br>1)数据类型自身的对齐值：基本数据类型的自身对齐值，等于sizeof(基本数据类型)。<br>2)指定对齐值：#pragma pack (value)时的指定对齐值value。<br>3)结构体或者类的自身对齐值：其成员中自身对齐值最大的那个值。<br>4)数据成员、结构体和类的有效对齐值：自身对齐值和指定对齐值中较小的那个值。<br>  有效对齐值N是最终用来决定数据存放地址方式的值，最重要。有效对齐N，就是表示“对齐在N上”，也就是说该数据的”存放起始地址%N=0”.而数据结构中的数据变量都是按定义的先后顺序来排放的。第一个数据变量的起始地址就是 数据结构的起始地址。结构体的成员变量要对齐排放，结构体本身也要根据自身的有效对齐值圆整(就是结构体成员变量占用总长度需要是对结构体有效对齐值的整 数倍)</p>
+<p>#pragma pack (value)来告诉编译器，使用我们指定的对齐值来取代缺省的。<br>如#pragma pack (1)  /<em>指定按2字节对齐</em>/</p>
+<p>#pragma pack () /<em>取消指定对齐，恢复缺省对齐</em>/</p>
+<p>##共用体##<br>用途：使几个不同类型的变量共占一段内存（相互覆盖）</p>
+<p>###定义###<br>union 共用体名<br>{<br>    类型标示符 成员名;<br>    类型标示符 成员名;<br>    ……<br>};//此时为类型定义，不分配内存；定义变量时，系统分配内存<br><strong>共用体不能同时对所有成员初始化</strong></p>
+<p><strong>共用体所占内存大小由共用体内占内存最大的成员决定，等于最长成员所占字节数。但仍然满足结构体字节对齐准则，“结构体的总大小为结构体最宽基本类型成员大小的整数倍，如有需要编译器会在最末一个成员之后加上填充字节”，共用体也满足这一原则。</strong><br><strong>栗子</strong><br>union example<br>{<br>    char c[9];<br>    double d;<br>}//此时共用体占16个字节。<br>因为此共用体中包含两种基本类型char(1字节)和double(8字节)。字符数组占9个字节，不是最宽基本类型double的整数倍，所以要填充字节到16，此时满足字节对齐准则。</p>
+<p><strong>定义形式1</strong><br>union data<br>{<br>    int i;<br>    char ch;<br>    float f;<br>}a,b;</p>
+<p><strong>定义形式2</strong><br>union data<br>{<br>    int i;<br>    char ch;<br>    float f;<br>};<br>union data a,b,c,*p,d[3];</p>
+<p><strong>定义形式3</strong><br>union          //无名共用体<br>{<br>    int i;<br>    char ch;<br>    float f;<br>};<br>union data a,b,c,*p,d[3];</p>
+<p><strong>注意：任何时刻，共用体内部只有一个成员变量存在</strong></p>
+<p>###共用体变量引用###<br>三种方式：</p>
+<blockquote>
+<ul>
+<li>共用体变量名.成员名</li>
+<li>共用体指针名-&gt;成员名</li>
+<li>(共用体指针名).成员名</li>
+</ul>
+</blockquote>
+<p>应用规则：</p>
+<blockquote>
+<ul>
+<li>不能引用共用体变量，只能引用其成员</li>
+<li>共用体变量中起作用的成员是最后一次存放（赋值）的成员</li>
+<li>不能在定义共用体变量时初始化，而且用大括号初始化只能初始化第一个成员变量</li>
+<li>可以用一个共用体变量为另一个变量赋值</li>
+</ul>
+</blockquote>
+<p>结构体变量和共用体变量内存形式的不同：</p>
+<blockquote>
+<ul>
+<li>编译器会为结构体变量中的每个数据成员分配不同的地址空间，即结构体变量中的数据是并列关系。</li>
+<li>编译器为共用体变量中的数据成员分配的是同一块内存，每个时刻只有一个数据成员有意义。</li>
+</ul>
+</blockquote>
+<p>##枚举类型##<br>枚举类型是用户自定义的类型，在定义枚举类型时，需指明其取值集合，用枚举类型声明枚举变量时，只能取集合汇总的某项作为其值，在一定程度上保证了取值的安全性。</p>
+<p><strong>基本格式</strong><br>enum 枚举类型名 {枚举常量1[=整型常数],枚举常量1[=整型常数],……};</p>
+<p>枚举类型的定义包括以下要素：</p>
+<blockquote>
+<ul>
+<li>枚举类型名，有效的C语言标示符</li>
+<li>枚举表是枚举常量的集合，枚举表中每项后的”=整型常数”是给枚举常量赋初值，方括号代表赋初值的操作可以省略</li>
+<li>如果不给枚举常量赋初值，编译器会为每一个枚举常量赋一个不同的整型值，第一个为0，第二个为1，等等。当枚举表中某个常量赋值后，其后的成员则按依次加1的规则确定其值。</li>
+<li>枚举型常量是整型常量</li>
+</ul>
+</blockquote>
+<p>##typedef##<br>功能：用自定义名字为已有数据类型命名<br>类型定义的简单形式：typedef type name;<br>栗子：typedef int integer;</p>
+<p><strong>说明：</strong></p>
+<blockquote>
+<ul>
+<li>typedef没有创造新数据类型</li>
+<li>typedef是类型定义，不能定义变量</li>
+<li>typedef与define不同，define</li>
+<li>define在预编译时处理；是简单的字符置换。typedef在编译时处理，为已有类型命名。</li>
+</ul>
+</blockquote>
+<p>typedef定义的步骤</p>
+<blockquote>
+<ul>
+<li>按定义变量的方法先写出定义体</li>
+<li>将变量名换成新类型名</li>
+<li>最前面加typedef</li>
+<li>用新类型名定义变量</li>
+</ul>
+</blockquote>
+<p><strong>使用typedef名称有利用程序的通用与移植。有时程序会依赖于硬件特性，用typedef类型便于移植。</strong></p>
+<p>栗子：<br>数组：<br>int x[100];<br>int s[100];<br>typedef int s[100];<br>s x;//相当于 int x[100];</p>
+<p>指针：<br>char <em>p;<br>char </em>str;<br>typedef char *str;<br>str s=”abc”;<br>str a[5];</p>
+<p>函数指针：<br>void(<em>p)();<br>void(</em>GO)();<br>typedef void(*GO)();<br>G0 go1=go;<br>go1();</p>
+<p>结构体：<br>typedef struct info<br>{<br>    char name[20];<br>    int num;<br>}INFO;<br>INFO info1;</p>
+<p>结构体指针：<br>struct info<br>{<br>    char name[20];<br>    int num;<br>};<br>typedef struct info <em> P;//P代表info </em>类型<br>P ip;<br>或者<br>typedef struct info<br>{<br>    char name[20];<br>    int num;<br>}*P;<br>P ip;</p>
+<p>##深拷贝和浅拷贝##<br>简单的来说就是，在有指针的情况下，浅拷贝只是增加了一个指针指向已经存在的内存，而深拷贝就是增加一个指针并且申请一个新的内存，使这个增加的指针指向这个新的内存，采用深拷贝的情况下，<br>释放内存的时候就不会出现在浅拷贝时重复释放同一内存的错误！</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/C-C/">C/C++</a>
+  </div>
+
+</div>
+
+
+<div class="article-share" id="share">
+
+  <div data-url="http://yoursite.com/2015/05/05/CC++学习笔记（17）/" data-title="C/C++ 学习笔记（17） | superD&#39;s blog" data-tsina="" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2015/05/09/CC++学习笔记（18）/" title="C/C++ 学习笔记（18）">
+  <strong>上一篇：</strong><br/>
+  <span>
+  C/C++ 学习笔记（18）</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2015/04/29/CC++学习笔记（16）/"  title="C/C++ 学习笔记（16）">
+ <strong>下一篇：</strong><br/> 
+ <span>C/C++ 学习笔记（16）
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section class="comment">
+	<div class="ds-thread"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#C-C-学习笔记-Windows"><span class="toc-number">1.</span> <span class="toc-text">C/C++ 学习笔记(Windows)</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tags/C-C/" title="C/C++">C/C++<sup>19</sup></a></li>
+		
+			<li><a href="/tags/Javascript/" title="Javascript">Javascript<sup>4</sup></a></li>
+		
+			<li><a href="/tags/CSS-line-height/" title="CSS, line-height">CSS, line-height<sup>1</sup></a></li>
+		
+			<li><a href="/tags/CSS-absolute/" title="CSS,absolute">CSS,absolute<sup>1</sup></a></li>
+		
+			<li><a href="/tags/DOM/" title="DOM">DOM<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Linux-C-C/" title="Linux, C/C++">Linux, C/C++<sup>1</sup></a></li>
+		
+			<li><a href="/tags/linkedlist-C/" title="linkedlist,C++">linkedlist,C++<sup>1</sup></a></li>
+		
+			<li><a href="/tags/HTML-CSS/" title="HTML CSS">HTML CSS<sup>1</sup></a></li>
+		
+			<li><a href="/tags/算法，C-C-，数据结构/" title="算法，C/C++，数据结构">算法，C/C++，数据结构<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+      <li><a href="http://yangjian.me" target="_blank" title="YangJian">Alimon's Blog</a></li>
+      <li><a href="http://zipperary.com/" target="_blank" title="zippera">Zippera's Blog</a></li>
+    </ul>
+</div>
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hi,I&#39;m superd. For now I&#39;m a graduate student in Xidian University. <br/>
+			I&#39;ll share my learning experience with you at this blog.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2628201573 for http://weibo.com/u/2628201573" target="_blank" class="icon-weibo" title="weibo"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://zespia.tw/hexo/" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Pacman">Jacman</a> © 2017 
+		
+		<a href="http://yoursite.com/about" target="_blank" title="superD">superD</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:""};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+
+
+<div id="totop">
+<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+</div>
+
+<script src="/js/totop.js"></script>
+
+
+
+
+  </body>
+</html>

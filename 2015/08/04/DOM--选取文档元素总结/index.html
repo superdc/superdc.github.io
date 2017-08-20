@@ -1,0 +1,436 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>DOM--获取文档元素总结 | superD&#39;s blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="superD">
+    
+    <meta name="description" content="##DOM定义了许多方式来选取元素，有如下方法：##
+
+用指定的id属性用指定的name属性用指定的标签名字用指定的CSS类用指定的CSS选择器
+
+##下面逐个介绍各种选取文档元素的方法：##
+###通过id选取元素###使用Document对象的getElementById()方法例如：1var ">
+    
+    
+    
+    
+    <link rel="alternative" href="/atom.xml" title="superD&#39;s blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.svg" alt="superD&#39;s blog" title="superD&#39;s blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="superD&#39;s blog">superD&#39;s blog</a></h1>
+				<h2 class="blog-motto">Que sera sera.</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:yoursite.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/08/04/DOM--选取文档元素总结/" title="DOM--获取文档元素总结" itemprop="url">DOM--获取文档元素总结</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="http://yoursite.com/about" title="superD" target="_blank" itemprop="author">superD</a>
+		
+  <p class="article-time">
+    <time datetime="2015-08-04T13:32:10.000Z" itemprop="datePublished"> 发表于 2015 Aug 4</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			
+		
+		</div>
+		
+		<p>##DOM定义了许多方式来选取元素，有如下方法：##</p>
+<blockquote>
+<p>用指定的id属性<br>用指定的name属性<br>用指定的标签名字<br>用指定的CSS类<br>用指定的CSS选择器</p>
+</blockquote>
+<p>##下面逐个介绍各种选取文档元素的方法：##</p>
+<p>###通过id选取元素###<br>使用Document对象的getElementById()方法<br>例如：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var oDiv=document.getElementById('div1');</div></pre></td></tr></table></figure></p>
+<p><em>注意：</em></p>
+<blockquote>
+<p>同一个文档中元素的id属性的值必须是唯一的。<br>在低于IE8版本的浏览器中，对匹配元素的id不区分大小写，而且也返回匹配name属性的元素。</p>
+</blockquote>
+<p>###通过name选取元素（不常用）###<br>使用Document对象的getElementsByName()方法<br><em>注意：</em></p>
+<blockquote>
+<p>该方法定义在HTMLDocument类中，不在Document类中。它只针对HTML文档可用，在XML文档中不可用。<br>返回是的NodeList对象，类似一个只读数组。</p>
+</blockquote>
+<p>###通过标签名选取元素###<br>Document对象和Element对象都有getElementsByTagName()方法<br>例如：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var firstpara=document.getElementsByTagName('p')[0];</div><div class="line">var firstParaSpans=firstpara.getElementsByTagName('span');</div></pre></td></tr></table></figure></p>
+<p><em>注意：</em></p>
+<blockquote>
+<p>返回NodeList对象。<br>返回的NodeList的实时变化的，也就是说，当文档状态变化时，返回的元素列表也随之改变。</p>
+</blockquote>
+<p>###通过CSS类选取元素###<br>和getElementsByTagName()方法一样，Document对象和Element对象都有getElementsByClassName()方法。<br><em>注意：</em></p>
+<blockquote>
+<p>返回实时的NodeList对象。<br>可以选取具有多个类的元素，类名之间用空格隔开，类名之间的顺序是任意的。<br>因为class是Javascript的关键字，所以用className属性保存HTML的class属性值。<br>有兼容性问题，IE8及其较低版本不支持该方法。</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">/*兼容版本的getElementsByClassName()*/</div><div class="line">function getElementsByClassName(element,names)</div><div class="line">&#123;</div><div class="line">	if(element.getElementsByClassName)&#123;</div><div class="line">		return element.getElementsByClassName(names);</div><div class="line">	&#125;else&#123;</div><div class="line">		var elements=element.getElementsByTagName('*');</div><div class="line">		var result=[];</div><div class="line">		var element,flag,classNameStr;</div><div class="line">		names=names.split(' ');</div><div class="line">		for(var i=0; element=elements[i]; i++)&#123;</div><div class="line">			classNameStr=' '+ element.className + ' ';</div><div class="line">			flag=ture;</div><div class="line">			for(var j=0, name; name=names[j]; j++)&#123;</div><div class="line">				if(classNameStr.indexOf(' '+name+' ')==-1)&#123;</div><div class="line">					flag=false;</div><div class="line">					break;</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">			if(flag)&#123;</div><div class="line">				result.push(element);</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		return result;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line">/*代码中有两处在得到的字符串前后加了空白字符，目的是为了能够独立匹配元素的每个类名字符串。</div><div class="line"> *假设得到的chassNameStr='ac ab abc'; names=[a b];</div><div class="line"> *在不加空格字符的情况下开始匹配，name[0]='a'; 我们知道这个元素的类名并不与要获取的元素类名匹配，可是用indexOf返回的并不是-1，</div><div class="line"> *这就出现了错误。而加了空格字符的情况下匹配，可以避免这个错误，正确匹配。</div><div class="line">*/</div></pre></td></tr></table></figure>
+<p>###通过CSS选择器选取元素###<br>Document对象和Element对象都有querySelector/All()方法。<br>例如：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var users=document.querySelector("#users");</div><div class="line">/*返回不实时改变的NodeList对象*/</div><div class="line">users.querySelectorAll(".user");</div><div class="line">/*只返回匹配的第一个元素*/</div></pre></td></tr></table></figure></p>
+<p><em>注意：</em></p>
+<blockquote>
+<p>不能匹配像”:first-line”和”:first-letter”这样的伪类选择器。</p>
+</blockquote>
+<p>##docume.all[]##<br>虽然已经废弃不应该再使用，但是现在仍然可以看到。<br>它的用法有以下几种：</p>
+<blockquote>
+<p>document.all[0]              //文档的第一个元素<br>document.all[“navbar”]       //id或name为”navbar”的元素<br>document.all.navbar          //同上<br>document.all.tags(“div”)     //文档中所有的<div>元素<br>document.all.tags(“p”)[0]    //文档中第一个p元素</div></p>
+</blockquote>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/DOM/">DOM</a>
+  </div>
+
+</div>
+
+
+<div class="article-share" id="share">
+
+  <div data-url="http://yoursite.com/2015/08/04/DOM--选取文档元素总结/" data-title="DOM--获取文档元素总结 | superD&#39;s blog" data-tsina="" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2015/08/06/JS运动特效——qq延时提示框/" title="一步一步学习JS运动特效——qq延时提示框">
+  <strong>上一篇：</strong><br/>
+  <span>
+  一步一步学习JS运动特效——qq延时提示框</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2015/08/03/Firefox控制台执行delete问题/"  title="Firefox控制台执行delete问题">
+ <strong>下一篇：</strong><br/> 
+ <span>Firefox控制台执行delete问题
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section class="comment">
+	<div class="ds-thread"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ 
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tags/C-C/" title="C/C++">C/C++<sup>19</sup></a></li>
+		
+			<li><a href="/tags/Javascript/" title="Javascript">Javascript<sup>4</sup></a></li>
+		
+			<li><a href="/tags/CSS-line-height/" title="CSS, line-height">CSS, line-height<sup>1</sup></a></li>
+		
+			<li><a href="/tags/CSS-absolute/" title="CSS,absolute">CSS,absolute<sup>1</sup></a></li>
+		
+			<li><a href="/tags/DOM/" title="DOM">DOM<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Linux-C-C/" title="Linux, C/C++">Linux, C/C++<sup>1</sup></a></li>
+		
+			<li><a href="/tags/linkedlist-C/" title="linkedlist,C++">linkedlist,C++<sup>1</sup></a></li>
+		
+			<li><a href="/tags/HTML-CSS/" title="HTML CSS">HTML CSS<sup>1</sup></a></li>
+		
+			<li><a href="/tags/算法，C-C-，数据结构/" title="算法，C/C++，数据结构">算法，C/C++，数据结构<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+      <li><a href="http://yangjian.me" target="_blank" title="YangJian">Alimon's Blog</a></li>
+      <li><a href="http://zipperary.com/" target="_blank" title="zippera">Zippera's Blog</a></li>
+    </ul>
+</div>
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hi,I&#39;m superd. For now I&#39;m a graduate student in Xidian University. <br/>
+			I&#39;ll share my learning experience with you at this blog.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2628201573 for http://weibo.com/u/2628201573" target="_blank" class="icon-weibo" title="weibo"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://zespia.tw/hexo/" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Pacman">Jacman</a> © 2017 
+		
+		<a href="http://yoursite.com/about" target="_blank" title="superD">superD</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:""};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+
+
+<div id="totop">
+<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+</div>
+
+<script src="/js/totop.js"></script>
+
+
+
+
+  </body>
+</html>

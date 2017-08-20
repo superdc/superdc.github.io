@@ -1,0 +1,57 @@
+
+  
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>图片淡入淡出</title>
+	<style type="text/css">
+		img{
+			opacity: 0.2; /*除IE外其他浏览器*/
+			filter: alpha(opacity: 20); /*IE浏览器*/
+		}
+	</style>
+</head>
+<body>
+	<img src="../img/Desert.jpg">
+	<script type="text/javascript">
+		window.onload=function(){
+			var oImg=document.getElementsByTagName('img')[0];
+			oImg.onmouseover=function(){
+				startMove(100);
+			}
+			oImg.onmouseout=function(){
+				startMove(20);
+			}
+		}
+		var timer=null;
+		var alpha=20;
+		
+		function startMove(iTarget){
+			var oImg=document.getElementsByTagName('img')[0];
+			clearInterval(timer);			
+			timer=setInterval(function(){
+				var iSpeed=0;
+				if(alpha<iTarget){
+					iSpeed=1;
+				}
+				else{
+					iSpeed=-1;
+				}
+				if(alpha==iTarget)
+				{
+					clearInterval(timer);
+				}
+				else{
+					alpha+=iSpeed;
+					oImg.style.opacity=alpha/100;
+					oImg.style.filter='alpha(opacity:'+alpha+')';
+				}
+				
+			},30);
+
+		}
+	</script>
+</body>
+</html>
+  

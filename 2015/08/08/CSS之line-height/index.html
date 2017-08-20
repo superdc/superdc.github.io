@@ -1,0 +1,462 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>CSS之line-height | superD&#39;s blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="superD">
+    
+    <meta name="description" content="#line-height#最开始遇到line-height是用它来解决文字垂直居中对齐，经常是看到这样的写法：p{height:24px; line-height:24px;},为什么把高度和行高设置成一样的文字就垂直居中了呢？后来看《CSS权威指南》，鑫空间的css行高line-height的一些深入理解及应用和这位作者的视频CSS深入理解之line-height才加深了一点理解，在这里总结一下。">
+    
+    
+    
+    
+    <link rel="alternative" href="/atom.xml" title="superD&#39;s blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.svg" alt="superD&#39;s blog" title="superD&#39;s blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="superD&#39;s blog">superD&#39;s blog</a></h1>
+				<h2 class="blog-motto">Que sera sera.</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:yoursite.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/08/08/CSS之line-height/" title="CSS之line-height" itemprop="url">CSS之line-height</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="http://yoursite.com/about" title="superD" target="_blank" itemprop="author">superD</a>
+		
+  <p class="article-time">
+    <time datetime="2015-08-08T07:54:22.000Z" itemprop="datePublished"> 发表于 2015 Aug 8</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			
+		
+		</div>
+		
+		<p>#line-height#<br>最开始遇到line-height是用它来解决文字垂直居中对齐，经常是看到这样的写法：p{height:24px; line-height:24px;},为什么把高度和行高设置成一样的文字就垂直居中了呢？后来看《CSS权威指南》，鑫空间的<a href="http://www.zhangxinxu.com/wordpress/2009/11/css行高line-height的一些深入理解及应用/" target="_blank" rel="external">css行高line-height的一些深入理解及应用</a>和这位作者的视频<a href="http://www.imooc.com/learn/403" target="_blank" rel="external">CSS深入理解之line-height</a>才加深了一点理解，在这里总结一下。<a id="more"></a></p>
+<p>##line-height定义##</p>
+<blockquote>
+<p>文本行基线之间的距离。</p>
+</blockquote>
+<p>那什么是基线呢？</p>
+<blockquote>
+<p>基线一般是英文字母x下边缘的位置。</p>
+</blockquote>
+<p>如下图所示。</p>
+<div align="center"><img src="/img/line-height.jpg" width="300px" height="200px" align="center"></div><br>两条baseline之间的距离就是line-height。<br>但要注意不是每种字体的基线都刚好经过x的下边缘<br>图中的Arial和Simsun字体的基线都在字母x下边缘偏下位置。<br><div align="center"><img src="/img/baseline与字体.jpg" width="300px" height="200px"></div>
+
+<p>##line-height用法##</p>
+<blockquote>
+<p>值：    &lt;length&gt; | &lt;percentage&gt; | &lt;number&gt; | normal | inherit<br>初始值：normal<br>应用于：所有元素<br>继承性：有</p>
+</blockquote>
+<p><strong>line-height的可取值与继承</strong></p>
+<blockquote>
+<p>默认值normal</p>
+</blockquote>
+<p>不同用户代理计算出来的值可能不同，通常是字体大小的1.2倍(可以查看浏览器的默认样式)。后代元素的line-height如果没有单独设置的话，那么这个1.2就是继承值，后代元素的line-height就是后代元素字体大小与1.2的乘积。</p>
+<blockquote>
+<p>带单位的值<br>比如：<code>line-height: 20px;</code> ，后代元素继承这个值，line-height为20px。</p>
+<p>相对值和百分数</p>
+</blockquote>
+<p>这里要注意后代元素继承的line-height是父元素line-height的计算值。（要注意虽然这里百分数和纯数字的值可能是一样的，但他们的继承方式是不同的。）</p>
+<blockquote>
+<p>纯数字</p>
+</blockquote>
+<p>比如：<code>line-height: 1.5</code>，这个值叫做缩放因子。后代元素继承的是这个数字，后代元素的line-height就是他们自己的font-size和缩放因子的乘积。</p>
+<blockquote>
+<p>inherit</p>
+</blockquote>
+<p>元素会继承父元素的计算值。这与值的直接继承效果一样，但是特殊性和层叠解决方案不同，因为直接继承的样式是没有优先级的，容易被其他样式覆盖。</p>
+<p>##一些基本术语##<br>要想知道为什么line-height能让文本垂直居中，就要了解一下行布局的一些知识，下面是一些基本术语。</p>
+<blockquote>
+<p>内容区</p>
+</blockquote>
+<p>对于非替换元素，内容区是围绕文字看不见的盒子，类似与一个块级元素的内容框，与字体大小有关。<br>对于替换元素，内容区是元素的固有高度加上可能的外边距、边框或内边距。</p>
+<blockquote>
+<p>内联盒子</p>
+</blockquote>
+<p>外部有内联元素(如span,em,a)包围，会产生内联盒子；未被任何内联标签包围的文字是匿名文本，产生匿名盒子。</p>
+<blockquote>
+<p>行间距</p>
+</blockquote>
+<p>行间距的值是line-heighte值和font-siz值之差（可能为负），体现为上图中两行之间的空白部分。<strong>行间距只应用于非替换元素上，而不应用与替换元素上。</strong></p>
+<blockquote>
+<p>行内框</p>
+</blockquote>
+<p>元素的内容区会生成行内框，默认高度就是内容区的高度。如果设置行高能够改变行内框的高度。怎么改变呢？<br>将行间距除以2，得到半行间距，分别把它们加到内容区的顶部和底部，因此可以得到行内框的高度等于line-height的高度。<br>而对于非替换元素，因为行间距不作用与替换元素，其行内框的高度等于内容区的高度。</p>
+<blockquote>
+<p>行框(line box)</p>
+</blockquote>
+<p>行框是包含一行中出现的行内框的最高点和最低点的最小框。</p>
+<p>当line-height值比font-size值大的时候，行间距是正的，加到内容区顶部和底部后，行内框变高了，体现就是文本行之间的距离变大了。<br>当line-height值比font-size值小的时候，行间距是负的，加到内容区顶部和底部后，行内框变矮了，体现就是文本行之间的距离变小了，可能发生重叠。</p>
+<p>##line-height与高度##<br><strong>CSS中决定元素高度的有两个属性：height和line-height。height可以显示设置块级元素替换元素的高度。这里讨论的都是不设置高度height</strong><br>一个空的div元素<code>&lt;div&gt;&lt;/div&gt;</code>高度是0，当div中有了文字，div就有了高度，那么这个高度是文字撑起来的还是<br>line-height呢？（看上面那篇文章里说div中有空格的时候也有高度，此时要在代码中用空格的实体字符）</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">.div1&#123;</div><div class="line">	font-size: 14px;</div><div class="line">	line-height: 0;</div><div class="line">	background-color: #ccc; </div><div class="line">	border: 1px solid #eee;</div><div class="line">	&#125;</div><div class="line">.div2&#123;</div><div class="line">	font-size: 0;</div><div class="line">	line-height: 14px;</div><div class="line">	background-color: #ccc; </div><div class="line">	border: 1px solid #eee;</div><div class="line">&#125;</div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"div1"</span>&gt;</span>大家好，大家好<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"div2"</span>&gt;</span>大家好，大家好<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>效果图如下：</p>
+<p><div align="center"><img src="/img/行高与高度.jpg" width="400px" height="300px" align="center"></div><br><strong>从图中我们能看到是line-height撑开div的高度，而不是文字内容的大小。</strong><br>我们可以用上面的几个术语来理解一下：<br>font-size的大小为0px，也就是内容区的高度为0px，但行高不为0，行间距仍然可以计算出来，并把半行间距分别加在内容区的顶部和底部，行框仍然具有高度，就是line-height的高度。<br>那么元素到底是如何获得高度的？<br>内联元素的内容区高度由font-size决定，行内框的高度由line-height决定，行框的高度由一行元素的行内框的最高点和最低点决定，行框的高度堆积在一块构成了元素的高度。</p>
+<p>##line-height和垂直居中##<br>line-height的特性：垂直居中性。line-height生成的行框所占据的空间与文字内容共用水平中垂线。以上图为例，当行高为0，行框高度为0的时候，它所在的位置是文字的水平中垂线上。<br>可以用line-height实现单行文字的水平居中，并且不用设置height的值。</p>
+<p>##line-height与行内非替换元素的边框，内边距和外边距##<br>这三个属性不会影响元素垂直方向的布局，即不改变行高；但会影响水平方向的布局。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">p&#123;width: 500px;line-height: 1.5;border: 1px solid black;&#125;</div><div class="line">p span&#123;border: 1px solid green;&#125;</div><div class="line">p span+span&#123;border: 1px solid red;padding: 10px;margin: 10px;&#125;</div><div class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>大家好<span class="tag">&lt;<span class="name">span</span>&gt;</span>我是一个内联元素<span class="tag">&lt;/<span class="name">span</span>&gt;</span>你们好啊！你们好啊！你们好啊！你们好啊！你们好啊！你们好啊！<span class="tag">&lt;<span class="name">span</span>&gt;</span>我是另一个内联元素<span class="tag">&lt;/<span class="name">span</span>&gt;</span>！你们好啊！你们好啊！你们好啊！你们好啊！你们好啊！你们好啊！<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p><div align="center"><img src="/img/line-height与行内盒模型.jpg" width="400px" height="300px" align="center"></div><br><strong>边框包围的的内容区，与line-height无关</strong></p>
+<p>##line-height与行内替换元素##<br>行内替换元素，如图像有固有的宽度和高度，但他们的高度不会影响他们本身或其他元素的line-height值，但是会影响行框的高度，因为行框要包含所有元素的行内框。替换元素的行内框由替换元素的整体（包括内容、外边距、内边距和边框）来定义。<br>那么替换元素为什么要有line-height值呢？<br>用于垂直对齐时能正确定位，vertical-alignd的百分数值要相对于元素的line-height值计算。</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/CSS-line-height/">CSS, line-height</a>
+  </div>
+
+</div>
+
+
+<div class="article-share" id="share">
+
+  <div data-url="http://yoursite.com/2015/08/08/CSS之line-height/" data-title="CSS之line-height | superD&#39;s blog" data-tsina="" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2015/08/15/CSS之absolute/" title="CSS之absolute">
+  <strong>上一篇：</strong><br/>
+  <span>
+  CSS之absolute</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2015/08/06/JS运动特效——qq延时提示框/"  title="一步一步学习JS运动特效——qq延时提示框">
+ <strong>下一篇：</strong><br/> 
+ <span>一步一步学习JS运动特效——qq延时提示框
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section class="comment">
+	<div class="ds-thread"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ 
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tags/C-C/" title="C/C++">C/C++<sup>19</sup></a></li>
+		
+			<li><a href="/tags/Javascript/" title="Javascript">Javascript<sup>4</sup></a></li>
+		
+			<li><a href="/tags/CSS-line-height/" title="CSS, line-height">CSS, line-height<sup>1</sup></a></li>
+		
+			<li><a href="/tags/CSS-absolute/" title="CSS,absolute">CSS,absolute<sup>1</sup></a></li>
+		
+			<li><a href="/tags/DOM/" title="DOM">DOM<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Linux-C-C/" title="Linux, C/C++">Linux, C/C++<sup>1</sup></a></li>
+		
+			<li><a href="/tags/linkedlist-C/" title="linkedlist,C++">linkedlist,C++<sup>1</sup></a></li>
+		
+			<li><a href="/tags/HTML-CSS/" title="HTML CSS">HTML CSS<sup>1</sup></a></li>
+		
+			<li><a href="/tags/算法，C-C-，数据结构/" title="算法，C/C++，数据结构">算法，C/C++，数据结构<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+      <li><a href="http://yangjian.me" target="_blank" title="YangJian">Alimon's Blog</a></li>
+      <li><a href="http://zipperary.com/" target="_blank" title="zippera">Zippera's Blog</a></li>
+    </ul>
+</div>
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hi,I&#39;m superd. For now I&#39;m a graduate student in Xidian University. <br/>
+			I&#39;ll share my learning experience with you at this blog.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2628201573 for http://weibo.com/u/2628201573" target="_blank" class="icon-weibo" title="weibo"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://zespia.tw/hexo/" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Pacman">Jacman</a> © 2017 
+		
+		<a href="http://yoursite.com/about" target="_blank" title="superD">superD</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:""};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+
+
+<div id="totop">
+<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+</div>
+
+<script src="/js/totop.js"></script>
+
+
+
+
+  </body>
+</html>

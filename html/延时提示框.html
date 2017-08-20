@@ -1,0 +1,65 @@
+
+  
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>延时提示框</title>
+	<style type="text/css">
+		body,div{margin: 0; padding: 0;}
+		.prompt-box{
+			position: absolute;
+			right: 15px;
+			top: 0;
+			width: 289px;
+			height: 534px;
+			background: url(../img/qq.jpg) no-repeat 0 0;
+		}
+		a#image{
+			display: block;
+			position: absolute;
+			top: 47px;
+			left: 11px;
+			width: 65px;
+			height: 65px;
+			background: url(../img/link1.jpg) no-repeat 0 0;
+		}
+		a#image:hover{
+			background: url(../img/link2.jpg) no-repeat 0 0;
+		}
+		div#infor{
+			display: none;
+			position: absolute;
+			top: 50px;
+			left: -284px;
+			width: 284px;
+			height: 210px;
+			background: url(../img/qq_infor.jpg) no-repeat 0 0;
+		}
+	</style>
+</head>
+<body>
+	<div class="prompt-box">
+		<a href="#" id="image"></a>
+		<div id="infor"></div>
+	</div>
+	<script type="text/javascript">
+		window.onload=function(){
+			var oLink=document.getElementById('image');
+			var oInfor=document.getElementById('infor');
+			var timer=null;
+
+			oLink.onmouseover=oInfor.onmouseover=function(){
+				oInfor.style.display='block';
+				clearTimeout(timer);
+			}
+			oLink.onmouseout=oInfor.onmouseout=function(){
+				timer=setTimeout(function(){
+					oInfor.style.display='none';
+				},300);
+			}
+		}
+	</script>
+</body>
+</html>
+  

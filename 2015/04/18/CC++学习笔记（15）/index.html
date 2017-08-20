@@ -1,0 +1,578 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>C/C++ 学习笔记（15） | superD&#39;s blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="superD">
+    
+    <meta name="description" content="C/C++ 学习笔记(Windows) 内存与指针##内存##
+
+
+内存是由按顺序编号的一系列存储单元组成的，每个存储单元（8位，一个字节）有唯一的地址，通过地址可以方便的在内存单元中存储信息。
+内存与CPU读写速度快，断电就没有了，容量比较小，成本比较高
+高级服务器一般将读写很频繁的数据存储在内存">
+    
+    
+    
+    
+    <link rel="alternative" href="/atom.xml" title="superD&#39;s blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.svg" alt="superD&#39;s blog" title="superD&#39;s blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="superD&#39;s blog">superD&#39;s blog</a></h1>
+				<h2 class="blog-motto">Que sera sera.</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:yoursite.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/04/18/CC++学习笔记（15）/" title="C/C++ 学习笔记（15）" itemprop="url">C/C++ 学习笔记（15）</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="http://yoursite.com/about" title="superD" target="_blank" itemprop="author">superD</a>
+		
+  <p class="article-time">
+    <time datetime="2015-04-18T02:30:47.000Z" itemprop="datePublished"> 发表于 2015 Apr 18</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#C-C-学习笔记-Windows-内存与指针"><span class="toc-number">1.</span> <span class="toc-text">C/C++ 学习笔记(Windows) 内存与指针</span></a></li></ol>
+		
+		</div>
+		
+		<h1 id="C-C-学习笔记-Windows-内存与指针"><a href="#C-C-学习笔记-Windows-内存与指针" class="headerlink" title="C/C++ 学习笔记(Windows) 内存与指针"></a>C/C++ 学习笔记(Windows) 内存与指针</h1><p>##内存##</p>
+<blockquote>
+<ul>
+<li>内存是由按顺序编号的一系列存储单元组成的，每个存储单元（8位，一个字节）有唯一的地址，通过地址可以方便的在内存单元中存储信息。</li>
+<li>内存与CPU读写速度快，断电就没有了，容量比较小，成本比较高</li>
+<li>高级服务器一般将读写很频繁的数据存储在内存中</li>
+<li>一个程序载入内存，代码数据都有地址；外挂就是调用函数，修改数据，函数就是代码，数据就是变量。</li>
+</ul>
+</blockquote>
+<p>##指针##</p>
+<blockquote>
+<ul>
+<li>变量是对程序中数据存储空间的抽象</li>
+<li>指针：一个变量的地址（首地址，如果解析变量的值，由指针的类型决定）；指针变量：专门存放变量地址的变量</li>
+<li>int num=10;  &amp;num 是num的地址；*(&amp;num)是num的值</li>
+<li>指针变量的定义：数据类型 *指针变量名=指向的变量的地址；</li>
+<li>栗子：int *p=&num;  这里指针变量p指向一个int型变量num。指针变量p中存储着num的地址，注意只是起始地址，那么用指针读取变量内容时，读取几个字节呢？就是由指针变量的类型决定的。比如这里是int型的，那么就读取4个字节的内容。</li>
+<li><em>p就是p指向的变量num的值，对</em>p赋值就相当于对num赋值</li>
+<li>指针使用之前必须初始化</li>
+<li>空指针是不指向任何变量的指针，int *p=NULL，但空指针指向的内容为系统所用，不能随便访问; NULL在stdio.h中定义为常量。</li>
+<li>直接访问与间接访问。直接访问：按变量地址存取变量值；间接访问：通过存放变量地址的变量去访问变量。</li>
+</ul>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">	<span class="keyword">int</span> num1 = <span class="number">10</span>, num2 = <span class="number">100</span>;</div><div class="line">	<span class="keyword">int</span> *p1 = &amp;num1;</div><div class="line">	<span class="keyword">double</span> *p2;</div><div class="line">	<span class="keyword">char</span> *p3;</div><div class="line">	<span class="built_in">printf</span>(<span class="string">"%d,%d,%d\n"</span>, <span class="keyword">sizeof</span>(p1), <span class="keyword">sizeof</span>(p2), <span class="keyword">sizeof</span>(p3));<span class="comment">//4,4,4（32位平台）</span></div><div class="line">	<span class="comment">//指针只是一个地址，大小是固定的，4个字节（32位平台）</span></div><div class="line">	<span class="comment">//如果是64位平台，每个指针占8个字节</span></div><div class="line">	<span class="built_in">printf</span>(<span class="string">"%x,%x\n"</span>, p1, &amp;num1);<span class="comment">//3cfb90,3cfb90</span></div><div class="line">	<span class="comment">//按十六进制打印</span></div><div class="line">	<span class="built_in">printf</span>(<span class="string">"%p,%p\n"</span>, p1, &amp;num1);<span class="comment">//打印指针，003cfb90,003cfb90（32位平台）</span></div><div class="line">	<span class="comment">//按地址打印，可以显示地址的位数，32位</span></div><div class="line"></div><div class="line">	<span class="comment">//scanf初始化指针</span></div><div class="line">	<span class="keyword">int</span> *p4 = <span class="literal">NULL</span>;</div><div class="line">	<span class="built_in">printf</span>(<span class="string">"%p\n"</span>, &amp;num2);</div><div class="line">	scanf_s(<span class="string">"%p"</span>, &amp;p4);</div><div class="line">	<span class="built_in">printf</span>(<span class="string">"%p,%d\n"</span>, p4, *p4);</div><div class="line">	system(<span class="string">"pause"</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//输入两个数，并使其从大到小输出（不允许改变这两个数的内容）</span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">	<span class="keyword">double</span> a, b;</div><div class="line">	<span class="keyword">double</span> *pmax = &amp;a, *pmin = &amp;b;</div><div class="line">	scanf_s(<span class="string">"%lf,%lf"</span>, &amp;a, &amp;b);</div><div class="line">	<span class="built_in">printf</span>(<span class="string">"原来数据：a=%f,b=%f\n"</span>, a, b);<span class="comment">//注意输入的形式要和双引号内部一样，比如：10.9,11.4（这里两个数之间的逗号必须有，不能省略或用空格代替）</span></div><div class="line">	<span class="keyword">if</span> (*pmax &lt; *pmin)<span class="comment">//指针交换</span></div><div class="line">	&#123;</div><div class="line">		<span class="keyword">double</span> *pt = pmax;</div><div class="line">		pmax = pmin;</div><div class="line">		pmin = pt;</div><div class="line">	&#125;</div><div class="line">	<span class="built_in">printf</span>(<span class="string">"数据从大到小：*pmax=%f,*pmin=%f\n"</span>, *pmax, *pmin);</div><div class="line">	<span class="built_in">printf</span>(<span class="string">"后来数据：a=%f,b=%f\n"</span>, a, b);</div><div class="line">	system(<span class="string">"pause"</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>###指向指针的指针###<br>指针变量也是变量，占据一定的内存空间，有地址，因此可以用一个指针指向它，称为指向指针的指针或二级指针。<br>例如：double num; double <em>p=&num; double *</em>pp=&p;</p>
+<p>###指针的类型###</p>
+<blockquote>
+<ul>
+<li>类型代表了所占内存的大小和对二进制数的解析方式</li>
+<li>不同类型的指针不能相互赋值，否则会出现解析错误</li>
+<li>不管什么类型的指针，在32位系统下都占4个字节，与类型无关，但怎样解析指针指向的地址的内容就与指针类型有关了</li>
+</ul>
+</blockquote>
+<p>###指针变量的值###<br>是指指针本身存储的数值，这个值将被编译器当做一个地址（所指向的数据所在内存的首地址），而不是一般的数值。</p>
+<p>###野指针与空指针###</p>
+<blockquote>
+<ul>
+<li>没有初始化的指针是野指针。如果在初始化之前使用该指针，一般会导致程序崩溃</li>
+<li>初始化为NULL的指针为空指针，指向0x00000000。没有权限访问空指针所指向的内容，因为该地址是操作系统使用的。</li>
+</ul>
+</blockquote>
+<p>###指针的运算###</p>
+<p><strong>指针变量的赋值运算</strong></p>
+<blockquote>
+<ul>
+<li><code>p=&amp;a;</code>  将变量a的地址赋给p</li>
+<li><code>p=array;</code>   数组arra的首地址赋给p</li>
+<li><code>p=&amp;array[i];</code>   数组元素的地址赋给p</li>
+<li><code>p1=p2;</code>   指针变量p2的值赋给p</li>
+<li>不能把一个整数赋给指针变量，也不能把指针变量的值赋给一个整型变量</li>
+</ul>
+</blockquote>
+<p><strong>指针变量的算术运算</strong></p>
+<blockquote>
+<ul>
+<li>指针的自增(++)和自减(–)，每次前进或后退sizeof(指针类型)个字节数</li>
+<li>指针的加减法在非数组内部没有意义，容易越界报错（因为一个进程不能读写其他进程的内存）</li>
+<li>若p=a：</li>
+<li><em>p++与</em>(p++)等价，先引用(取出*p的值)再自增(P=p+1)</li>
+<li>++p先自增再引用，(*p)++表示p所指向的元素值加1，指针值，即所指向的地址不变</li>
+<li><em>(p++)与</em>(++p)，前者是先去<em>p的值，后使p值加1，相当于a[i++]；后者先使p加1，再取</em>p的值，相当于a[++i]</li>
+</ul>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">	<span class="keyword">int</span> a[<span class="number">5</span>] = &#123; <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span> &#125;;</div><div class="line">	<span class="keyword">int</span> *p = a;<span class="comment">//p指向数组a的首地址</span></div><div class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++)</div><div class="line">	&#123;</div><div class="line">		<span class="built_in">printf</span>(<span class="string">"%d %d\n"</span>, a[i], *(p + i));<span class="comment">//p每加1，前进4个字节（因为指针是int类型），指向下一个数组元素</span></div><div class="line">	&#125;</div><div class="line">	<span class="keyword">for</span> (p; p &lt; a + <span class="number">5</span>; p++)</div><div class="line">	&#123;</div><div class="line">		<span class="built_in">printf</span>(<span class="string">"%d\n"</span>, *p);</div><div class="line">	&#125;</div><div class="line">	getchar();</div><div class="line">&#125;</div><div class="line"><span class="comment">//指针访问数组</span></div><div class="line"><span class="comment">//p[i],*(p+i)</span></div><div class="line"><span class="comment">//p+i,&amp;(p[i])</span></div></pre></td></tr></table></figure>
+<p>###指针的比较###<br>p1==p2  为真，说明两个指针指向同一地址；否则，两个指针不指向同一地址<br>p1&gt;p2  p1&lt;p2 比较两个指针所指向的地址的大小。在数组内部是比较地址靠前还是靠后</p>
+<p>###指针相减###</p>
+<blockquote>
+<ul>
+<li>两个同类型的指针相减，返回值是一个有符号整数。它们之间并不是简单作差，还要除以指针所指类型占用的内存字节数。所以这个有符号整数指示的是两个指针所指向的元素之间间隔的元素数。</li>
+<li>指针相减一般用于同一片内存空间，如数组。不同内存空间的指针相减没有什么实际意义。</li>
+</ul>
+</blockquote>
+<p>###指向元素的指针和指向数组的指针###<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">	<span class="keyword">int</span> a[<span class="number">5</span>] = &#123; <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span> &#125;;</div><div class="line">	<span class="built_in">printf</span>(<span class="string">"%x,%x\n"</span>, a, &amp;a);<span class="comment">//打印相同的地址</span></div><div class="line">	<span class="built_in">printf</span>(<span class="string">"%d,%d\n"</span>, <span class="keyword">sizeof</span>(*a), <span class="keyword">sizeof</span>(*(&amp;a)));<span class="comment">//4,20</span></div><div class="line">	<span class="keyword">int</span> *p = a;<span class="comment">//指向数组元素的指针</span></div><div class="line">	<span class="keyword">int</span>(*pa)[<span class="number">5</span>] = &amp;a;<span class="comment">//指向数组的指针</span></div><div class="line">	<span class="built_in">printf</span>(<span class="string">"%d,%d\n"</span>, <span class="keyword">sizeof</span>(*p), <span class="keyword">sizeof</span>(*(&amp;pa)));<span class="comment">//4,20</span></div><div class="line">	getchar();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>###指针引用多维数组###<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">	<span class="keyword">int</span> a[<span class="number">3</span>][<span class="number">4</span>] = &#123; <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>, <span class="number">11</span>, <span class="number">12</span> &#125;;</div><div class="line">	<span class="built_in">printf</span>(<span class="string">"%p,%p,%p\n"</span>, a, &amp;a, *a);<span class="comment">//打印出同一个地址</span></div><div class="line">	<span class="built_in">printf</span>(<span class="string">"%d,%d,%d\n"</span>, <span class="keyword">sizeof</span>(*a), <span class="keyword">sizeof</span>(*&amp;a), <span class="keyword">sizeof</span>(**a));<span class="comment">//16,48,4</span></div><div class="line">	<span class="comment">//a是一个行指针，类型是int (*a)[4]，指向有4个元素的数组;a+1指向第二行；a+2指向第三行</span></div><div class="line">	<span class="comment">//&amp;a是一个指向二维数组的指针,类型是int (*a)[3][4]</span></div><div class="line">	<span class="comment">//*a是一个指向int类型数据的指针,类型是 int *a</span></div><div class="line">	<span class="comment">//*a指向第一行第一个元素，*a+1指向第一行第二个元素，*a+2指向第一行第三个元素</span></div><div class="line">	<span class="comment">//a[i]与*(a+i)等价，代表第i行第一列的首地址</span></div><div class="line">	<span class="comment">//a[i][j]等价于*(*(a+i)+j)（或*(a[i]+j)）, &amp;a[i][j]等价于*(a+i)+j(或a[i]+j)</span></div><div class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++)</div><div class="line">	&#123;</div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="number">4</span>; j++)</div><div class="line">		&#123;</div><div class="line">			<span class="built_in">printf</span>(<span class="string">"%d,%x  "</span>, a[i][j], &amp;a[i][j]);</div><div class="line">		&#125;</div><div class="line">		<span class="built_in">printf</span>(<span class="string">"\n"</span>);</div><div class="line">	&#125;</div><div class="line">	<span class="built_in">printf</span>(<span class="string">"%p,%p,%p\n"</span>, a, a + <span class="number">1</span>, a + <span class="number">2</span>);<span class="comment">//a+i代表某一行的首地址，是行指针，16字节</span></div><div class="line">	<span class="built_in">printf</span>(<span class="string">"%p,%p,%p\n"</span>, *a, *a + <span class="number">1</span>, *a + <span class="number">2</span>);<span class="comment">//*a+i代表某一行第一列，第二列，第三列的首地址，4字节</span></div><div class="line">	<span class="built_in">printf</span>(<span class="string">"%p,%p,%p\n"</span>, *(a + <span class="number">1</span>), *(a + <span class="number">1</span>) + <span class="number">1</span>, *(a + <span class="number">1</span>) + <span class="number">2</span>);</div><div class="line">	<span class="built_in">printf</span>(<span class="string">"%p,%p,%p\n"</span>, *(a + <span class="number">0</span>), *(a + <span class="number">1</span>), *(a + <span class="number">2</span>));<span class="comment">//*(a+i)某一行第一列的首地址，4字节</span></div><div class="line">	<span class="built_in">printf</span>(<span class="string">"%p,%p,%p\n"</span>,a[<span class="number">0</span>], a[<span class="number">1</span>], a[<span class="number">2</span>]);<span class="comment">//a[i]代表某一行第一列的首地址，4个字节</span></div><div class="line">	<span class="built_in">printf</span>(<span class="string">"%d,%p"</span>, *(a[<span class="number">1</span>] + <span class="number">2</span>), a[<span class="number">1</span>] + <span class="number">2</span>);<span class="comment">//下面两种等价形式</span></div><div class="line">	<span class="comment">//*(*(a+1)+2),*(a+1)+2</span></div><div class="line">	<span class="comment">//a[1][2],&amp;a[1][2]</span></div><div class="line">	<span class="comment">//&amp;a[i]代表行指针，16字节，与a+i等价</span></div><div class="line">	getchar();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//有一个3*4的二维数组，要求用指向元素的指针变量输出二维数组各元素的值</span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">	<span class="keyword">int</span> a[<span class="number">3</span>][<span class="number">4</span>] = &#123; <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>, <span class="number">11</span>, <span class="number">12</span> &#125;;</div><div class="line">	<span class="comment">//--------------二维数组方式------------------</span></div><div class="line">	<span class="comment">//int *p = a;</span></div><div class="line">	<span class="comment">//for (int i = 0; i &lt;  3; i++)</span></div><div class="line">	<span class="comment">//&#123;</span></div><div class="line">	<span class="comment">//	for (int j = 0; j &lt; 4; j++)</span></div><div class="line">	<span class="comment">//	&#123;</span></div><div class="line">	<span class="comment">//		printf("%d  ", *(*(a + i) + j));</span></div><div class="line">	<span class="comment">//	&#125;</span></div><div class="line">	<span class="comment">//	printf("\n");</span></div><div class="line">	<span class="comment">//&#125;</span></div><div class="line">	<span class="comment">//-------------------线性方式------------------</span></div><div class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> *p = &amp;a[<span class="number">0</span>][<span class="number">0</span>]; p &lt; &amp;a[<span class="number">0</span>][<span class="number">0</span>] + <span class="number">12</span>; p++)</div><div class="line">	&#123;</div><div class="line">		<span class="built_in">printf</span>(<span class="string">"%d\n"</span>, *p);</div><div class="line">	&#125;</div><div class="line">	getchar();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//输出二维数组任一行任一列元素的值</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> _CRT_SECURE_NO_WARNINGS</span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">	<span class="keyword">int</span> a[<span class="number">3</span>][<span class="number">4</span>] = &#123; <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>, <span class="number">11</span>, <span class="number">12</span> &#125;;</div><div class="line">	<span class="keyword">int</span>(*p)[<span class="number">4</span>] = a;<span class="comment">//二维数组的数组名是一个指向一位数组的指针（行指针）</span></div><div class="line">	<span class="keyword">int</span> i = <span class="number">0</span>, j = <span class="number">0</span>;</div><div class="line">	<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>, &amp;i, &amp;j);</div><div class="line">	<span class="built_in">printf</span>(<span class="string">"%d,%d"</span>, p[i][j], *(*(p + i)+ j) );<span class="comment">//6,6</span></div><div class="line">	system(<span class="string">"pause"</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>###指针访问三维数组###<br>int型三维数组A，元素为A[i][j][k]，其等价形式如下：<br>(1) <em>(A[i][j]+k)<br>(2) </em>(<em>(A[i]+j)+k)<br>(3) </em>(<em>(</em>(A+i)+j)+k)</p>
+<p>###指针数组###</p>
+<p>###数组作为函数参数###<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></div><div class="line"><span class="comment">//数组作为函数参数，传递的是地址，占4个字节</span></div><div class="line"><span class="comment">//函数参数对于数组没有副本机制，为了节省内存，拷贝数组会浪费内存和CPU</span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">test</span><span class="params">(<span class="keyword">int</span> a[<span class="number">5</span>])</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">	<span class="built_in">printf</span>(<span class="string">"%d\n"</span>, <span class="keyword">sizeof</span>(a));</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//可以用指针变量作为形式参数，接受实参数组名传递来的地址</span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">show1</span><span class="params">(<span class="keyword">int</span> *p)</span><span class="comment">//一维数组用指向变量的指针变量</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++)</div><div class="line">	&#123;</div><div class="line">		<span class="built_in">printf</span>(<span class="string">"%d\n"</span>, p[i]);</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line">void show2(int(*p)[4])//二维数组用指向一维数组的指针变量</div><div class="line">&#123;</div><div class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++)</div><div class="line">	&#123;</div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="number">4</span>; j++)</div><div class="line">		&#123;</div><div class="line">			<span class="built_in">printf</span>(<span class="string">"%d\n"</span>, p[i][j]);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">	<span class="keyword">int</span> a[<span class="number">5</span>] = &#123; <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span> &#125;;</div><div class="line">	<span class="keyword">int</span> b[<span class="number">3</span>][<span class="number">4</span>] = &#123; <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>, <span class="number">11</span>, <span class="number">12</span> &#125;;</div><div class="line">	test(a);</div><div class="line">	show1(a);</div><div class="line">	show2(b);</div><div class="line">	getchar();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>练习</strong><br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//将数组a中n个整数按相反顺序存放a[10]=&#123;3,7,9,11,0,6,7,5,4,2&#125;;</span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">exchange</span><span class="params">(<span class="keyword">int</span> a[], <span class="keyword">int</span> n)</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n / <span class="number">2</span>; i++)</div><div class="line">	&#123;</div><div class="line">		<span class="keyword">int</span> temp = a[i];</div><div class="line">		a[i] = a[n - <span class="number">1</span> - i];</div><div class="line">		a[n - <span class="number">1</span> - i] = temp;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++)</div><div class="line">	&#123;</div><div class="line">		<span class="built_in">printf</span>(<span class="string">"%d\n"</span>, a[i]);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">	<span class="keyword">int</span> a[<span class="number">10</span>] = &#123; <span class="number">3</span>, <span class="number">7</span>, <span class="number">9</span>, <span class="number">11</span>, <span class="number">0</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">5</span>, <span class="number">4</span>, <span class="number">2</span> &#125;;</div><div class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++)</div><div class="line">	&#123;</div><div class="line">		<span class="built_in">printf</span>(<span class="string">"%d\n"</span>, a[i]);</div><div class="line">	&#125;</div><div class="line">	exchange(a,<span class="number">10</span>);</div><div class="line">	getchar();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//用指针方法对10个整数按由大到小顺序排序</span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">sort</span><span class="params">(<span class="keyword">int</span> *p, <span class="keyword">int</span> n)</span><span class="comment">//冒泡排序</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n - <span class="number">1</span>; i++)</div><div class="line">	&#123;</div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; n<span class="number">-1</span>-i; j++)</div><div class="line">		&#123;</div><div class="line">			<span class="keyword">if</span> (*(p+j) &lt; *(p+j+<span class="number">1</span>))</div><div class="line">			&#123;</div><div class="line">				<span class="keyword">int</span> temp = *(p + j);</div><div class="line">				*(p + j) = *(p + j + <span class="number">1</span>);</div><div class="line">				*(p + j + <span class="number">1</span>) = temp;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">	<span class="keyword">int</span> a[<span class="number">10</span>] = &#123; <span class="number">3</span>, <span class="number">7</span>, <span class="number">9</span>, <span class="number">11</span>, <span class="number">0</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">5</span>, <span class="number">4</span>, <span class="number">2</span> &#125;;</div><div class="line">	sort(a, <span class="number">10</span>);</div><div class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++)</div><div class="line">	&#123;</div><div class="line">		<span class="built_in">printf</span>(<span class="string">"%d\n"</span>, a[i]);</div><div class="line">	&#125;</div><div class="line">	getchar();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//有一个班，3个学生，各学4门课，计算总平均分以及第n个学生的成绩</span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line">void avr(int(*p)[4], int n)</div><div class="line">&#123;</div><div class="line">	<span class="keyword">double</span> res = <span class="number">0</span>;</div><div class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)</div><div class="line">	&#123;</div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="number">4</span>; j++)</div><div class="line">		&#123;</div><div class="line">			res += p[i][j];</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	res /= <span class="number">12.0</span>;</div><div class="line">	<span class="built_in">printf</span>(<span class="string">"%f\n"</span>, res);</div><div class="line">&#125;</div><div class="line"></div><div class="line">void showstu(int num, int(*p)[4])</div><div class="line">&#123;</div><div class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; i++)</div><div class="line">	&#123;</div><div class="line">		<span class="built_in">printf</span>(<span class="string">"%d\n"</span>, p[num][i]);</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line">void search(int (*p)[4])</div><div class="line">&#123;</div><div class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++)</div><div class="line">	&#123;</div><div class="line">		<span class="keyword">int</span> flag = <span class="number">1</span>;</div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="number">4</span>; j++)</div><div class="line">		&#123;</div><div class="line">			<span class="keyword">if</span> (p[i][j] &lt; <span class="number">60</span>)</div><div class="line">			&#123;</div><div class="line">				flag = <span class="number">0</span>;</div><div class="line">				<span class="built_in">printf</span>(<span class="string">"第%d个同学不及格\n"</span>, i + <span class="number">1</span>);</div><div class="line">				<span class="keyword">break</span>;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">if</span> (flag == <span class="number">0</span>)</div><div class="line">		&#123;</div><div class="line">			<span class="built_in">printf</span>(<span class="string">"第%d个同学各科成绩为："</span>,i+<span class="number">1</span>);</div><div class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="number">4</span>; j++)</div><div class="line">			&#123;				</div><div class="line">				<span class="built_in">printf</span>(<span class="string">"%d  "</span>, p[i][j]);</div><div class="line">			&#125;</div><div class="line">			<span class="built_in">printf</span>(<span class="string">"\n"</span>);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">	<span class="keyword">int</span> a[<span class="number">3</span>][<span class="number">4</span>] = &#123; <span class="number">45</span>, <span class="number">68</span>, <span class="number">97</span>, <span class="number">68</span>, <span class="number">89</span>, <span class="number">57</span>, <span class="number">65</span>, <span class="number">99</span>, <span class="number">100</span>, <span class="number">89</span>, <span class="number">98</span>, <span class="number">86</span> &#125;;</div><div class="line">	avr(a, <span class="number">3</span>);</div><div class="line">	<span class="keyword">int</span> num;</div><div class="line">	scanf_s(<span class="string">"%d"</span>, &amp;num);</div><div class="line">	showstu(num, a);</div><div class="line">	search(a);</div><div class="line">	system(<span class="string">"pause"</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>###函数指针###<br><strong>如果在程序中定义了一个函数，在编译时，编译系统为函数代码非配一段存储空间，这段空间的起始地址，称为这个函数的指针，可以定以一个指向函数的指针变量指向该函数的起始地址。</strong><br><strong>定义的一般形式：数据类型 (*指针变量名)(参数参数表列)=指向的函数名;</strong><br><strong>指向函数的指针变量一个重要用途：是把函数的地址作为实际参数传递到其他函数的形式参数（指向函数的指针）。</strong><br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//有两个整数a和b，由用户输入1,2或3.如果输入1，程序就给出a，b中较大者；</span></div><div class="line"><span class="comment">//输入2，就给出a，b中较小者；输入3，则求a和b之和。</span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">compare_max</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">	<span class="keyword">return</span> (a &gt; b) ? a : b;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">compare_min</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">	<span class="keyword">return</span> (a &lt; b) ? a : b;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">	<span class="keyword">return</span> a + b;</div><div class="line">&#125;</div><div class="line">int run(int a, int b, int(*p)(int, int))</div><div class="line">&#123;</div><div class="line">	<span class="built_in">printf</span>(<span class="string">"%d"</span>, p(a, b));</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">	<span class="keyword">int</span> a = <span class="number">5</span>, b = <span class="number">9</span>;</div><div class="line">	<span class="keyword">int</span> num;</div><div class="line">	scanf_s(<span class="string">"%d"</span>, &amp;num);</div><div class="line">	<span class="keyword">switch</span> (num)</div><div class="line">	&#123;</div><div class="line">	<span class="keyword">case</span> <span class="number">1</span>:</div><div class="line">		run(a,b,compare_max);</div><div class="line">		<span class="keyword">break</span>;</div><div class="line">	<span class="keyword">case</span> <span class="number">2</span>:</div><div class="line">		run(a, b, compare_min);</div><div class="line">		<span class="keyword">break</span>;</div><div class="line">	<span class="keyword">case</span> <span class="number">3</span>:</div><div class="line">		run(a, b, add);</div><div class="line">		<span class="keyword">break</span>;</div><div class="line">	<span class="keyword">default</span>:</div><div class="line">		<span class="built_in">printf</span>(<span class="string">"输入错误"</span>);</div><div class="line">	&#125;</div><div class="line">	system(<span class="string">"pause"</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>###函数返回值是指针###<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//用随机数生成一个数组，写一个函数查找最小数，并返回最小数的地址。</span></div><div class="line"><span class="comment">//在主函数中打印出来最小数。</span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;time.h&gt;</span></span></div><div class="line"><span class="function"><span class="keyword">int</span> * <span class="title">mindata</span><span class="params">(<span class="keyword">int</span> a[], <span class="keyword">int</span> n)</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">	<span class="keyword">int</span> *p = <span class="literal">NULL</span>;</div><div class="line">	<span class="keyword">int</span> min = a[<span class="number">0</span>];</div><div class="line">	p = a[<span class="number">0</span>];</div><div class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; i++)</div><div class="line">	&#123;</div><div class="line">		<span class="keyword">if</span> (a[i]&lt;min)</div><div class="line">		&#123;</div><div class="line">			min = a[i];</div><div class="line">			p = &amp;a[i];</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> p;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">	<span class="keyword">int</span> a[<span class="number">10</span>];</div><div class="line">	srand((<span class="keyword">unsigned</span> <span class="keyword">int</span>)time(<span class="literal">NULL</span>));</div><div class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++)</div><div class="line">	&#123;</div><div class="line">		a[i] = rand() % <span class="number">100</span>;</div><div class="line">		<span class="built_in">printf</span>(<span class="string">"%d  "</span>,a[i]);</div><div class="line">	&#125;</div><div class="line">	<span class="built_in">printf</span>(<span class="string">"\n"</span>);</div><div class="line">	<span class="built_in">printf</span>(<span class="string">"最小数为：%d\n"</span>, *(mindata(a,<span class="number">10</span>)));</div><div class="line">	system(<span class="string">"pause"</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//实现strcpy()函数</span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></div><div class="line"><span class="function"><span class="keyword">char</span> * <span class="title">mystrcpy</span><span class="params">(<span class="keyword">char</span> *dest, <span class="keyword">char</span> *source)</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">	<span class="keyword">char</span> *last = <span class="literal">NULL</span>;</div><div class="line">	<span class="keyword">if</span> (dest == <span class="literal">NULL</span> || source == <span class="literal">NULL</span>)</div><div class="line">	&#123;</div><div class="line">		<span class="keyword">return</span> last;</div><div class="line">	&#125;</div><div class="line">	last = dest;</div><div class="line">	<span class="keyword">while</span> ((*dest++ = *source++) != <span class="string">'\0'</span>);</div><div class="line">	</div><div class="line">		<span class="comment">/*while(*source!='\0')</span></div><div class="line"><span class="comment">		&#123;</span></div><div class="line"><span class="comment">			*dest=*source;//source是字符串的首地址！！！！所以一次只赋值一个值</span></div><div class="line"><span class="comment">			dest++;</span></div><div class="line"><span class="comment">			source++;</span></div><div class="line"><span class="comment">		&#125;*/</span></div><div class="line">	</div><div class="line">	<span class="keyword">return</span> last;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">	<span class="keyword">char</span> str[<span class="number">40</span>];</div><div class="line">	<span class="built_in">printf</span>(<span class="string">"%s"</span>,mystrcpy(str, <span class="string">"hello"</span>));</div><div class="line">	system(<span class="string">"pause"</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>###指针变量有关的一些扩展概念###<br><strong>指针变量与左值</strong><br>指针变量以及指针变量的间接引用都可以作为左值。<br>例如：int num1=0; int <em>p=&num1; </em>p=1; </p>
+<p><strong>指针与整型</strong></p>
+<blockquote>
+<ul>
+<li>无论指针指向什么类型的变量，对32位系统来说，都占4个内存字节，指针的值是某个内存的地址，是个整数。</li>
+<li>如果要对某个内存地址进行访问，可以通过强制类型转换来完成。如：int <em>p=(int </em>)0x0012FF7C;</li>
+</ul>
+</blockquote>
+<p><strong>void指针与空指针</strong><br>void <em>指针是一种特殊的指针，不指向任何类型的数据。<br>用于参数还有返回值，不明确指针类型的情况下传递地址需要用到空类型的指针。<br>如果需要用此地址指向某类型的数据（可以接收任意类型数据的地址），应先对地址进行类型转换。<br>例如：int num=10; void </em>p=&num; printf(“%d”,<em>((int </em>)p));//这样可以取出相应地址的值（printf(“%d”,<em>p);这样是不行的，因为void</em>类型不明确，不知道该取出几个字节）</p>
+<p>空指针是不指向任何地址的指针，值为NULL。</p>
+<p>###内存操作###<br><strong>memset()</strong><br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;memory.h&gt;</span></span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">	<span class="keyword">char</span> str[<span class="number">30</span>] = <span class="string">"china is great"</span>;</div><div class="line">	<span class="keyword">int</span> num[<span class="number">5</span>] = &#123; <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span> &#125;;</div><div class="line">	<span class="keyword">float</span> fl[<span class="number">5</span>] = &#123; <span class="number">1.0</span>, <span class="number">2.0</span>, <span class="number">3.0</span>, <span class="number">4.0</span>, <span class="number">5.0</span> &#125;;</div><div class="line">	<span class="built_in">memset</span>(str, <span class="string">'A'</span>, <span class="number">5</span>);<span class="comment">//AAAAA is great</span></div><div class="line">	<span class="comment">//memset()第一个参数为void *类型，可以接收任一类型变量的地址</span></div><div class="line">	<span class="built_in">printf</span>(<span class="string">"%s\n"</span>, str);</div><div class="line">	<span class="built_in">memset</span>(num, <span class="number">0</span>, <span class="number">5</span> * <span class="number">4</span>);</div><div class="line">	<span class="built_in">memset</span>(fl, <span class="number">0</span>, <span class="number">5</span> * <span class="number">4</span>);</div><div class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++)</div><div class="line">	&#123;</div><div class="line">		<span class="built_in">printf</span>(<span class="string">"%d  %f\n"</span>, num[i], fl[i]);<span class="comment">//0  0.000000</span></div><div class="line">	&#125;</div><div class="line">	system(<span class="string">"pause"</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>动态分配内存和静态分配内存</strong></p>
+<blockquote>
+<ul>
+<li>静态内存非配是在编译阶段（编译阶段将代码翻译成机器码）完成的，如声明数组时要明确指出数组大小。但缺点是分配过大或内存不足，因此引入动态分配机制。注意：数组只能处理小数据，大了会溢出</li>
+<li>动态内存分配是在运行阶段根据需要分配或释放内存，大小可以控制。使用完毕后，可以申请释放，由系统回收。</li>
+</ul>
+</blockquote>
+<p><strong>malloc()</strong><br>malloc和free是C标准库stdlib.h提供的两个函数，用以动态申请和释放内存。<br>调用格式：<br>void *malloc(unsigned int size);</p>
+<blockquote>
+<ul>
+<li>参数size是无符号整数，表示申请内存的大小。执行成功，系统会为程序开辟一块大小为size个字节的区域，并将区域的首地址返回，用户可利用该地址管理并使用该块内存；申请失败，返回空指针NULL。</li>
+<li>返回类型是void *，用以返回值对其他类型指针赋值时，必须进行显示转换。</li>
+<li>申请内存的长度可以通过“长度*sizeof（类型）”来计算。</li>
+</ul>
+</blockquote>
+<p>free是释放内存，如free(p);<br>注意：free根据地址释放内存，用free释放过的内存不能重复释放，否则出错。空指针可以重复释放多次，不会出错。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//malloc</span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">	<span class="keyword">int</span> num;</div><div class="line">	scanf_s(<span class="string">"%d"</span>,&amp;num);</div><div class="line">	<span class="keyword">void</span> *p = <span class="built_in">malloc</span>(num*<span class="keyword">sizeof</span>(<span class="keyword">int</span>));<span class="comment">//分配num*sizeof(int)个字节内容，由输入控制的，但这样对于数组来说是不允许的</span></div><div class="line">	<span class="keyword">int</span> *px = (<span class="keyword">int</span> *)p;<span class="comment">//动态数组来使用</span></div><div class="line">	<span class="comment">//或者直接写为：int *px=malloc(num*sizeof(int));</span></div><div class="line">	<span class="keyword">if</span> (px==<span class="literal">NULL</span>)</div><div class="line">	&#123;</div><div class="line">		<span class="built_in">printf</span>(<span class="string">"内存分配失败\n"</span>);</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">else</span></div><div class="line">	&#123;</div><div class="line">		<span class="built_in">printf</span>(<span class="string">"内存分配成功\n"</span>);</div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; num; i++)</div><div class="line">			&#123;</div><div class="line">				px[i] = i;</div><div class="line">			&#125;</div><div class="line">	&#125;</div><div class="line">	system(<span class="string">"pause"</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>calloc</strong><br>void *calloc(size_t num, size_t size);<br>calloc与malloc的区别：</p>
+<ol>
+<li>参数不同，calloc有两个参数，第一个参数是对象个数，第二个参数是对象占据的内存字节数。</li>
+<li>malloc以字节为单位申请内存；calloc以目标对象为单位分配，目标对象可以是数组，可以是结构体。</li>
+<li>calloc分配完内存之后，将内存的内容初始化为0；malloc分配内存，不进行初始化。<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">	<span class="keyword">int</span> num;</div><div class="line">	scanf_s(<span class="string">"%d"</span>, &amp;num);</div><div class="line">	<span class="keyword">int</span> *p = (<span class="keyword">int</span> *)<span class="built_in">calloc</span>(num, <span class="keyword">sizeof</span>(<span class="keyword">int</span>));<span class="comment">//动态分配</span></div><div class="line">	<span class="comment">//第一个参数，元素个数；第二个参数，元素大小</span></div><div class="line">	<span class="keyword">if</span> (p == <span class="literal">NULL</span>)</div><div class="line">	&#123;</div><div class="line">		<span class="built_in">printf</span>(<span class="string">"fail\n"</span>);</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">else</span></div><div class="line">	&#123;</div><div class="line">		<span class="built_in">printf</span>(<span class="string">"success\n"</span>);</div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> *px = p, i = <span class="number">1</span>; px &lt; p + num; px++, i++)</div><div class="line">		&#123;</div><div class="line">			*px = i;</div><div class="line">			<span class="built_in">printf</span>(<span class="string">"%d  "</span>, *px);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	system(<span class="string">"pause"</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><strong>realloc</strong><br>重新分配内存，如果可以在原来分配的内存空间下面拓展空间，则直接拓展，在原来地址的后面增加内存；否则先回收以分配的内存，然后重新分配内存空间<br>(void <em>)realooc((void </em>p),sizeof(int)*(num+addnum))<br>第一个参数：原来分配的内存的地址<br>第二个参数：现在需要的内存数</p>
+<p><strong>动态分配内存注意事项</strong></p>
+<blockquote>
+<ul>
+<li>指向动态分配内存的指针在释放之后的指针的值不变，但存储的数据都已清空，如果再次引用指针访问内存内容，得到垃圾数据</li>
+<li>在释放内存以后，按照软件工程的规范，指针应赋值为空，这时再引用指针会直接报错，可以快速定位错误。</li>
+<li>如果指向内存的指针消亡或者指针的值发生变化，对应的内存不会被释放，会引起内存泄露</li>
+</ul>
+</blockquote>
+<p>##x86和x64##<br>32位计算机</p>
+<blockquote>
+<ul>
+<li>最大只能识别4G内存</li>
+<li>因为地址为32位，最大为0x1111 1111 1111 1111 1111 1111 1111 1111=（4294967295）10,4294967295/1024/1024/1024=4G</li>
+</ul>
+</blockquote>
+<p>64位计算机</p>
+<blockquote>
+<ul>
+<li>地址为64位</li>
+<li>服务器级编程需要64位服务器，有海量内存</li>
+<li>64位系统可以运行32,64位应用程序；32位只能运行32位程序；ARM只能进行远程调试。</li>
+</ul>
+</blockquote>
+<p>##VS2013中debug和release##</p>
+<blockquote>
+<ul>
+<li>debug附加了很多调试信息，主要用于调试，生成的文件较大</li>
+<li>release经过了代码优化，去掉了调试信息，主要用于发布，生成的文件较小，且速度要快于debug</li>
+</ul>
+</blockquote>
+<p>##C语言和汇编结合##<br>_asm{汇编语句}</p>
+<p>##指针复习##<br><strong>一级指针：</strong></p>
+<blockquote>
+<ul>
+<li>函数内部间接修改外部变量；</li>
+<li>跨进程修改变量（外挂）；</li>
+<li>数组作为参数，可以用一级指针作为形式参数接收数组的首地址。</li>
+<li>可以存储一个数组的首地址，可以用指针的方式和下标的方式访问数组</li>
+<li>可以作为函数返回值返回地址，一定不能返回指向栈的地址</li>
+<li>间接访问结构体，共用体，枚举体，创建一个堆上的变量，存储这个变量的地址</li>
+</ul>
+</blockquote>
+<p><strong>函数的返回值有副本机制，函数执行完后，返回值地址被回收，值存储在寄存器后者能够，所以函数返回值不能够取地址</strong><br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//输入字符串，输出字符串</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> getname(x) #x  <span class="comment">//#作用，对输入加上双引号</span></span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">	<span class="built_in">printf</span>(<span class="string">"%s"</span>,getname(main));<span class="comment">//打印出main</span></div><div class="line">	getchar();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//数字从大到小输出</span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span> *pa,<span class="keyword">int</span> *pb)</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">	<span class="keyword">int</span> t = *pa;</div><div class="line">	*pa = *pb;</div><div class="line">	*pb = t;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">	<span class="keyword">int</span> a, b;</div><div class="line">	scanf_s(<span class="string">"%d%d"</span>, &amp;a, &amp;b);</div><div class="line">	<span class="keyword">int</span> *pa = &amp;a;</div><div class="line">	<span class="keyword">int</span> *pb = &amp;b;</div><div class="line">	<span class="keyword">if</span> (a &lt; b)</div><div class="line">	&#123;</div><div class="line">		swap(pa, pb);<span class="comment">//传递地址，交换两个地址的内容</span></div><div class="line">	&#125;</div><div class="line">	<span class="built_in">printf</span>(<span class="string">"%d,%d\n"</span>, *pa, *pb);</div><div class="line">	system(<span class="string">"pause"</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>注意：定义指针变量必须初始化，否则，会出错（使用未初始化的变量，但这是在VS2013中，它内部有严格的安全检查机制，如果在命令行中是可以编译通过的）。可以以这种形式初始化：int m; int *p=&m;</strong></p>
+<p>##N级指针##<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">	<span class="keyword">int</span> numA = <span class="number">100</span>;</div><div class="line">	<span class="keyword">int</span> *p = &amp;numA;<span class="comment">//*p=100;</span></div><div class="line">	<span class="keyword">int</span> **pp = &amp;p;<span class="comment">//**pp=100;</span></div><div class="line">	<span class="keyword">int</span> ***ppp = &amp;pp;<span class="comment">//***ppp=100;</span></div><div class="line">	<span class="built_in">printf</span>(<span class="string">"%x\n"</span>, &amp;numA);<span class="comment">//0x23f92c</span></div><div class="line">	<span class="built_in">printf</span>(<span class="string">"%x\n"</span>, &amp;p);<span class="comment">//0x23f914</span></div><div class="line">	<span class="built_in">printf</span>(<span class="string">"%x\n"</span>, &amp;pp);<span class="comment">//0x23f908</span></div><div class="line">	<span class="built_in">printf</span>(<span class="string">"%x\n"</span>, &amp;ppp);<span class="comment">//0x23f8fc</span></div><div class="line">	<span class="built_in">printf</span>(<span class="string">"%x\n"</span>, ppp);<span class="comment">//0x23f908</span></div><div class="line">	<span class="built_in">printf</span>(<span class="string">"%x\n"</span>, *ppp);<span class="comment">//0x23f914</span></div><div class="line">	<span class="built_in">printf</span>(<span class="string">"%x\n"</span>, **ppp);<span class="comment">//0x23f92c</span></div><div class="line">	<span class="built_in">printf</span>(<span class="string">"%d\n"</span>, ***ppp);<span class="comment">//100</span></div><div class="line">	getchar();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>易错点</strong></p>
+<blockquote>
+<ul>
+<li><em>p++ &lt;=&gt; </em>(p++)</li>
+<li>char str[10]=”abcde”; str是常量，不能通过str++实现地址的前进。可以定义一个字符指针来实现，char *p=str; 通过p++实现地址的前进。</li>
+</ul>
+</blockquote>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/C-C/">C/C++</a>
+  </div>
+
+</div>
+
+
+<div class="article-share" id="share">
+
+  <div data-url="http://yoursite.com/2015/04/18/CC++学习笔记（15）/" data-title="C/C++ 学习笔记（15） | superD&#39;s blog" data-tsina="" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2015/04/29/CC++学习笔记（16）/" title="C/C++ 学习笔记（16）">
+  <strong>上一篇：</strong><br/>
+  <span>
+  C/C++ 学习笔记（16）</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2015/04/16/CC++学习笔记（14）/"  title="C/C++ 学习笔记（14）">
+ <strong>下一篇：</strong><br/> 
+ <span>C/C++ 学习笔记（14）
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section class="comment">
+	<div class="ds-thread"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#C-C-学习笔记-Windows-内存与指针"><span class="toc-number">1.</span> <span class="toc-text">C/C++ 学习笔记(Windows) 内存与指针</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tags/C-C/" title="C/C++">C/C++<sup>19</sup></a></li>
+		
+			<li><a href="/tags/Javascript/" title="Javascript">Javascript<sup>4</sup></a></li>
+		
+			<li><a href="/tags/CSS-line-height/" title="CSS, line-height">CSS, line-height<sup>1</sup></a></li>
+		
+			<li><a href="/tags/CSS-absolute/" title="CSS,absolute">CSS,absolute<sup>1</sup></a></li>
+		
+			<li><a href="/tags/DOM/" title="DOM">DOM<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Linux-C-C/" title="Linux, C/C++">Linux, C/C++<sup>1</sup></a></li>
+		
+			<li><a href="/tags/linkedlist-C/" title="linkedlist,C++">linkedlist,C++<sup>1</sup></a></li>
+		
+			<li><a href="/tags/HTML-CSS/" title="HTML CSS">HTML CSS<sup>1</sup></a></li>
+		
+			<li><a href="/tags/算法，C-C-，数据结构/" title="算法，C/C++，数据结构">算法，C/C++，数据结构<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+      <li><a href="http://yangjian.me" target="_blank" title="YangJian">Alimon's Blog</a></li>
+      <li><a href="http://zipperary.com/" target="_blank" title="zippera">Zippera's Blog</a></li>
+    </ul>
+</div>
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hi,I&#39;m superd. For now I&#39;m a graduate student in Xidian University. <br/>
+			I&#39;ll share my learning experience with you at this blog.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2628201573 for http://weibo.com/u/2628201573" target="_blank" class="icon-weibo" title="weibo"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://zespia.tw/hexo/" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Pacman">Jacman</a> © 2017 
+		
+		<a href="http://yoursite.com/about" target="_blank" title="superD">superD</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:""};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+
+
+<div id="totop">
+<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+</div>
+
+<script src="/js/totop.js"></script>
+
+
+
+
+  </body>
+</html>

@@ -1,0 +1,451 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>C/C++ 学习笔记（2） | superD&#39;s blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="superD">
+    
+    <meta name="description" content="C/C++ 学习笔记开发环境各操作系统下的开发环境
+- Windows：Visual studio 2010/2013
+- Mac: Xcode
+- Linux: Vim
+- Unix: Vim
+跨平台开发工具
+- QT
+- Code Blocks
+- Eclipse
+几个区别
+- Visual C">
+    
+    
+    
+    
+    <link rel="alternative" href="/atom.xml" title="superD&#39;s blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.svg" alt="superD&#39;s blog" title="superD&#39;s blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="superD&#39;s blog">superD&#39;s blog</a></h1>
+				<h2 class="blog-motto">Que sera sera.</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:yoursite.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/02/12/CC++学习笔记（2）/" title="C/C++ 学习笔记（2）" itemprop="url">C/C++ 学习笔记（2）</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="http://yoursite.com/about" title="superD" target="_blank" itemprop="author">superD</a>
+		
+  <p class="article-time">
+    <time datetime="2015-02-12T05:20:34.000Z" itemprop="datePublished"> 发表于 2015 Feb 12</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#C-C-学习笔记"><span class="toc-number">1.</span> <span class="toc-text">C/C++ 学习笔记</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#开发环境"><span class="toc-number">1.1.</span> <span class="toc-text">开发环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Windows-平台开发环境VS2013"><span class="toc-number">1.2.</span> <span class="toc-text">Windows 平台开发环境VS2013</span></a></li></ol></li></ol>
+		
+		</div>
+		
+		<h1 id="C-C-学习笔记"><a href="#C-C-学习笔记" class="headerlink" title="C/C++ 学习笔记"></a>C/C++ 学习笔记</h1><h2 id="开发环境"><a href="#开发环境" class="headerlink" title="开发环境"></a>开发环境</h2><p><strong>各操作系统下的开发环境</strong></p>
+<pre><code>- Windows：Visual studio 2010/2013
+- Mac: Xcode
+- Linux: Vim
+- Unix: Vim
+</code></pre><p><strong>跨平台开发工具</strong></p>
+<pre><code>- QT
+- Code Blocks
+- Eclipse
+</code></pre><p><strong>几个区别</strong></p>
+<pre><code>- Visual C++（VC++）：一般指微软公司的Visual Studio开发套件中的Visual C++开发环境。
+- C++：类似C语言的面向对象的高级语言。C++兼容C。
+- C：C语言。
+- Turbo C: Borland公司开发的C编程环境。
+-注意：首尾两个是开发工具。
+</code></pre><h2 id="Windows-平台开发环境VS2013"><a href="#Windows-平台开发环境VS2013" class="headerlink" title="Windows 平台开发环境VS2013"></a>Windows 平台开发环境VS2013</h2><p><strong> 1. 新建项目 </strong><br><strong> 命名 </strong><br>遵循下列规则。推荐：字母+数字<br><img src="/img/项目名称.jpg" alt=""><br><strong> 入口点 </strong><br>应用程序开始执行的地方</p>
+<p>在c程序中，main函数是入口点，从main开始执行，从main结束<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt; //为了使用printf和getchar函数</span></span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">   <span class="built_in">printf</span>(<span class="string">"HelloWorld"</span>);  <span class="comment">//打印“”中的内容</span></div><div class="line">   getchar();  <span class="comment">//等待输入一个字符</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>以上是一个<code>main()</code>函数，有输入，有输出</p>
+<p>函数名之前的关键字是函数返回值（函数输出）类型。</p>
+<p><code>void</code>是返回值为空的类型。</p>
+<p><code>main</code>是函数名称。</p>
+<p><code>()</code>内是函数的输入，可以为空，表示没有输入。</p>
+<p><code>{}</code>内是函数体，是函数实现的内容。是把输入加工成输出的过程。</p>
+<p><code>//</code>和<code>/* */</code>为注释</p>
+<p><code>stdio.h</code>是头文件。</p>
+<p>头文件中一般存放一些定义，很少作实际的运算。头文件的好处是通用，如一些用得上的定义，可以让其他的文件来调用它，节省代码量。</p>
+<p><strong>注意</strong></p>
+<pre><code>- ()和{}不能缺少，输入和输出可以为空。
+- C语言严格区分大小写。
+- 不加头文件会出现错误：找不到标识符。printf()函数包含在stdio.h里面
+- error就是bug。
+- C语言不提供输入输出语句，而是靠输入输出标准库stdio.h。
+</code></pre><blockquote>
+<p>Bug来源：<br> Bug英文意思是臭虫，引入到计算机领域要追溯到第一代计算机时代。当时的计算机是由真空管构成的，需要利用大量的电力使真空管发光。某天，一只虫子爬进了其中一只真空管中，导致计算机停止了工作。研究人员耗费了很长时间，找来找去，一处地方一处地方排查，最后终于发现了这只虫子，取出虫子后，计算机就恢复了正常。于是 bug这个词就在计算机领域中代表了隐藏的错误、缺陷、漏洞或者问题。把排除错误的过程称为debug。<br>断点：<br>断点是为了方便程序员在调试过程中观察程序内部各状态而专门设置的一种调试手段。也就是在调试模式下运行程序过程中，当程序语句运行到设置的断点后，暂停程序运行，但是程序当时的内存、寄存器、上下文环境等数据都被保持，并且在源代码编辑器中指示出当前停留在代码的哪一行。然后程序员就可以不慌不忙利用调试器查看程序内部状态。<br><strong> 2. 头文件，源文件和预处理 </strong><br><strong> 头文件 </strong></p>
+<pre><code>- 英文名是head，后缀为.h。
+- 是源文件的辅助文件，一般把一些变量和函数定义到头文件，而将函数的实现放到源文件中。
+- #include是C语言预处理提示符。告诉编译器在编译前要进行预处理。就是将&lt;&gt;中的文件内容包含到当前文件内。所谓包含，是指将&lt;&gt;中列出的文件的内容复制到当前文件中。
+- #include&lt;&gt; 包含系统文件。
+- #include&quot;&quot;包含自己编写的文件。不仅可以包含.h文件，可以包含任何格式的文件，如.c，.cpp。
+- # 一定要是第一个非空字符，前面可以有空格。否则编译器会提示错误，并且错误信息和出错原因完全不匹配。# 和 include 之间可以有多个空格。
+- 预编译指令一般不需要加分号。对include来说，加分号没有错误，有警告，不影响执行。
+- 头文件的作用：避免重复定义。同一作用域下不能包含相同名称的变量。
+</code></pre></blockquote>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/C-C/">C/C++</a>
+  </div>
+
+</div>
+
+
+<div class="article-share" id="share">
+
+  <div data-url="http://yoursite.com/2015/02/12/CC++学习笔记（2）/" data-title="C/C++ 学习笔记（2） | superD&#39;s blog" data-tsina="" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2015/02/15/CC++学习笔记（3）/" title="CC++ 学习笔记（3）">
+  <strong>上一篇：</strong><br/>
+  <span>
+  CC++ 学习笔记（3）</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2015/02/10/CC++学习笔记（1）/"  title="C/C++ 学习笔记（1）">
+ <strong>下一篇：</strong><br/> 
+ <span>C/C++ 学习笔记（1）
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section class="comment">
+	<div class="ds-thread"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#C-C-学习笔记"><span class="toc-number">1.</span> <span class="toc-text">C/C++ 学习笔记</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#开发环境"><span class="toc-number">1.1.</span> <span class="toc-text">开发环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Windows-平台开发环境VS2013"><span class="toc-number">1.2.</span> <span class="toc-text">Windows 平台开发环境VS2013</span></a></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tags/C-C/" title="C/C++">C/C++<sup>19</sup></a></li>
+		
+			<li><a href="/tags/Javascript/" title="Javascript">Javascript<sup>4</sup></a></li>
+		
+			<li><a href="/tags/CSS-line-height/" title="CSS, line-height">CSS, line-height<sup>1</sup></a></li>
+		
+			<li><a href="/tags/CSS-absolute/" title="CSS,absolute">CSS,absolute<sup>1</sup></a></li>
+		
+			<li><a href="/tags/DOM/" title="DOM">DOM<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Linux-C-C/" title="Linux, C/C++">Linux, C/C++<sup>1</sup></a></li>
+		
+			<li><a href="/tags/linkedlist-C/" title="linkedlist,C++">linkedlist,C++<sup>1</sup></a></li>
+		
+			<li><a href="/tags/HTML-CSS/" title="HTML CSS">HTML CSS<sup>1</sup></a></li>
+		
+			<li><a href="/tags/算法，C-C-，数据结构/" title="算法，C/C++，数据结构">算法，C/C++，数据结构<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+      <li><a href="http://yangjian.me" target="_blank" title="YangJian">Alimon's Blog</a></li>
+      <li><a href="http://zipperary.com/" target="_blank" title="zippera">Zippera's Blog</a></li>
+    </ul>
+</div>
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hi,I&#39;m superd. For now I&#39;m a graduate student in Xidian University. <br/>
+			I&#39;ll share my learning experience with you at this blog.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2628201573 for http://weibo.com/u/2628201573" target="_blank" class="icon-weibo" title="weibo"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://zespia.tw/hexo/" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Pacman">Jacman</a> © 2017 
+		
+		<a href="http://yoursite.com/about" target="_blank" title="superD">superD</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:""};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+
+
+<div id="totop">
+<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+</div>
+
+<script src="/js/totop.js"></script>
+
+
+
+
+  </body>
+</html>

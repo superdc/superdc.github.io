@@ -1,0 +1,66 @@
+
+  
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>分享到</title>
+	<style type="text/css">
+		#share-box{
+			position: absolute;
+			left: -100px;
+			top: 100px;
+			width: 100px;
+			height: 200px;
+			background-color: #ccc;
+		}
+		#share-box span{
+			position: absolute;
+			top: 50px;
+			left: 100px;
+			width: 24px;
+			height: 60px;
+			line-height: 20px;
+			text-align: center;
+			background-color: yellow;
+		}
+	</style>
+</head>
+<body>
+	<div id="share-box"><span>分享到</span></div>
+	<script type="text/javascript">
+		window.onload=function(){
+			var oDiv=document.getElementById('share-box');
+			oDiv.onmouseover=function(){
+				startMove(0);
+			}
+			oDiv.onmouseout=function(){
+				startMove(-100);
+			}
+		}
+		var timer=null;
+		function startMove(iTarget){
+			var oDiv=document.getElementById('share-box');
+			clearInterval(timer);
+			timer=setInterval(function(){
+				var iSpeed=0;
+				if(oDiv.offsetLeft<iTarget){
+					iSpeed=10;
+				}
+				else{
+					iSpeed=-10;
+				}
+				if(oDiv.offsetLeft==iTarget)
+				{
+					clearInterval(timer);
+				}
+				else{
+					oDiv.style.left=oDiv.offsetLeft+iSpeed+'px';
+				}
+				
+			},30);
+		}
+	</script>
+</body>
+</html>
+  

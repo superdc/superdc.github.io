@@ -1,0 +1,480 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>页面布局 | superD&#39;s blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="superD">
+    
+    <meta name="description" content="##水平居中布局##
+###1.内部容器宽度固定，外部容器宽度不定###margin:0 auto;123456body&amp;#123;font: 30px/1.5 &#34;微软雅黑&#34;;color: #fff;&amp;#125;.parent&amp;#123;background-color: #ddd;&amp;#125;.c">
+    
+    
+    
+    
+    <link rel="alternative" href="/atom.xml" title="superD&#39;s blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.svg" alt="superD&#39;s blog" title="superD&#39;s blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="superD&#39;s blog">superD&#39;s blog</a></h1>
+				<h2 class="blog-motto">Que sera sera.</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:yoursite.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/08/20/页面布局小结/" title="页面布局" itemprop="url">页面布局</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="http://yoursite.com/about" title="superD" target="_blank" itemprop="author">superD</a>
+		
+  <p class="article-time">
+    <time datetime="2015-08-20T01:47:54.000Z" itemprop="datePublished"> 发表于 2015 Aug 20</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一列定宽一列自适应"><span class="toc-number">1.</span> <span class="toc-text">###一列定宽一列自适应###</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#多列定宽一列自适应"><span class="toc-number">2.</span> <span class="toc-text">###多列定宽一列自适应###</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#一列不定宽一列自适应"><span class="toc-number">3.</span> <span class="toc-text">###一列不定宽一列自适应###</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#多列不定宽一列自适应"><span class="toc-number">4.</span> <span class="toc-text">###多列不定宽一列自适应###</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#等分布局"><span class="toc-number">5.</span> <span class="toc-text">###等分布局###</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#等高布局"><span class="toc-number">6.</span> <span class="toc-text">###等高布局###</span></a></li></ol>
+		
+		</div>
+		
+		<p>##水平居中布局##</p>
+<p>###1.内部容器宽度固定，外部容器宽度不定###<br><code>margin:0 auto;</code><br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">body&#123;font: 30px/1.5 "微软雅黑";color: #fff;&#125;</div><div class="line">.parent&#123;background-color: #ddd;&#125;</div><div class="line">.child&#123;background-color: #666;width: 100px;margin: 0 auto;&#125;</div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"parent"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"child"</span>&gt;</span>DEMO<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>兼容性：<br>混杂模式中IE6无法实现居中。可以加入样式.parent{text-align:center;}，在IE6中，text-align可以让元素居中，而不止是文本。但要注意一点，text-align具有继承性，会让内部容器中的文本内容居中，如果不想要这个效果需要加入.child{text-align:left;}.<br><strong>text-align的用法：应用于块级元素，可以使块级元素内部的内联文本居中，左对齐或右对齐（不能使块级元素本身位置发生变化），不能用于内联元素。</strong></p>
+<p>###2.内部容器宽度不定，外部容器宽度不定###<br><strong>方式1</strong><br><code>inline-block + text-align</code><br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">body&#123;font: 30px/1.5 "微软雅黑";color: #fff;&#125;</div><div class="line">.parent&#123;background-color: #ddd;text-align: center;&#125;</div><div class="line">.child&#123;background-color: #666;display: inline-block;&#125;</div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"parent"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"child"</span>&gt;</span>DEMO<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>Firefox浏览器效果图如下：</p>
+<p><div align="center"><img src="/img/水平居中1.jpg" width="400px" height="300px"></div><br>IE6下效果图：</p>
+<p><div align="center"><img src="/img/水平居中2.jpg" width="400px" height="300px"></div><br>我们可以看到在IE6下内部容器仍然是块级元素。<br><strong>可以将<code>display:inline;</code>的元素块级化，但IE6/7不能将<code>display:block;</code>的元素内联化</strong></p>
+<p><strong>解决方法：</strong>在内部容器的样式中加入<code>*display: inline;*zoom:1;</code>(<code>zoom:1;</code>可以触发IE6/7的haslayout，使内联元素呈块级元素显示)<br>同样要注意内部容器会继承<code>text-align:center;</code>。</p>
+<p><strong>方式2</strong><br><code>table + margin</code><br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">body&#123;font: 30px/1.5 "微软雅黑";color: #fff;&#125;</div><div class="line">.parent&#123;background-color: #ddd;&#125;</div><div class="line">.child&#123;background-color: #666;display: table;margin: 0 auto;&#125;</div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"parent"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"child"</span>&gt;</span>DEMO<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>兼容性：不兼容IE6/7。<br><code>display:table;</code>让元素像块级元素一样显示，但元素的宽度是内容的宽度，和<code>display:inline-block;</code>一样具有包裹性。</p>
+<p><strong>方式3</strong><br><code>absolute + transform</code><br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">body&#123;font: 30px/1.5 "微软雅黑";color: #fff;&#125;</div><div class="line">.parent&#123;background-color: #ddd;height:1.5em;position: relative;&#125;</div><div class="line">.child&#123;background-color: #666;position: absolute;left:50%;transform:translateX(-50%);&#125;</div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"parent"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"child"</span>&gt;</span>DEMO<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>兼容性：不兼容IE6/7/8。<br><code>position:absolute;</code>的特点是使元素脱离文档流，元素呈块级元素显示，宽度为内容宽度。所以将内部元素设置<code>position:absolute;</code>后，父元素的高度塌陷，需要显示的设置高度height。</p>
+<p><strong>方式4</strong><br><code>flex + justify-content</code><br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">body&#123;font: 30px/1.5 "微软雅黑";color: #fff;&#125;</div><div class="line">.parent&#123;background-color: #ddd;display: flex;justify-content:center;&#125;</div><div class="line">.child&#123;background-color: #666;&#125;</div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"parent"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"child"</span>&gt;</span>DEMO<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>兼容性：不兼容IE6/7/8。</p>
+<p>##垂直居中布局##</p>
+<p>###1.内部容器高度固定，外部容器高度不定###<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"parent"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"child"</span>&gt;</span>DEMO<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>###2.内部容器高度不定，外部容器高度不定###</p>
+<p><strong>方式1</strong><br><code>table-cell + vertical-align</code><br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">body&#123;font: 30px/1.5 "微软雅黑";color: #fff;&#125;</div><div class="line">.parent&#123;background-color: #ddd;height: 500px;display: table-cell;vertical-align: middle;&#125;</div><div class="line">.child&#123;background-color: #666;&#125;</div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"parent"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"child"</span>&gt;</span>DEMO<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>兼容性：不兼容IE6/7。<br>vertical-align作用于行内元素和表单元格，不影响块级元素中的内容的对齐，影响表单元格内容的对齐。</p>
+<p><strong>方式2</strong><br><code>absolute+transform</code><br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">body&#123;font: 30px/1.5 "微软雅黑";color: #fff;&#125;</div><div class="line">.parent&#123;background-color: #ddd;width:4em;height: 500px;position: relative;&#125;</div><div class="line">.child&#123;background-color: #666;position: absolute;top: 50%;transform:translateY(-50%);&#125;</div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"parent"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"child"</span>&gt;</span>DEMO<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>兼容性：不兼容IE6/7/8。</p>
+<p><strong>方式3</strong><br><code>flex + align-items</code><br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">body&#123;font: 30px/1.5 "微软雅黑";color: #fff;&#125;</div><div class="line">.parent&#123;background-color: #ddd;width: 4em;height: 500px;display: flex;align-items:center;&#125;</div><div class="line">.child&#123;background-color: #666;&#125;</div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"parent"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"child"</span>&gt;</span>DEMO<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>兼容性：不兼容IE6/7/8。</p>
+<p>##居中布局##</p>
+<p>###1.内部容器宽高不定，外部容器宽高不定###<br><strong>方式1</strong><br><code>inline-block+text-align+table-cell+vertical-align</code><br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">body&#123;font: 30px/1.5 "微软雅黑";color: #fff;&#125;</div><div class="line">.parent&#123;background-color: #ddd;width: 200px;height: 300px;text-align: center;display: table-cell;vertical-align: middle;&#125;</div><div class="line">.child&#123;background-color: #666;display: inline-block;&#125;</div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"parent"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"child"</span>&gt;</span>DEMO<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p><strong>方式2</strong><br><code>absolute+transform</code><br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">body&#123;font: 30px/1.5 "微软雅黑";color: #fff;&#125;</div><div class="line">.parent&#123;background-color: #ddd;width: 200px;height: 300px;position: relative;&#125;</div><div class="line">.child&#123;background-color: #666;position: absolute;top: 50%;left: 50%;transform:translate(-50%,-50%);&#125;</div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"parent"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"child"</span>&gt;</span>DEMO<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p><strong>方式2</strong><br><code>flex+justify-content+align-items</code><br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">body&#123;font: 30px/1.5 "微软雅黑";color: #fff;&#125;</div><div class="line">.parent&#123;background-color: #ddd;width: 200px;height: 300px;display: flex;justify-content:center;align-items:center;&#125;</div><div class="line">.child&#123;background-color: #666;&#125;</div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"parent"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"child"</span>&gt;</span>DEMO<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>##多列布局##</p>
+<h2 id="一列定宽一列自适应"><a href="#一列定宽一列自适应" class="headerlink" title="###一列定宽一列自适应###"></a>###一列定宽一列自适应###</h2><p>1.<code>float+margin</code><br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">*&#123;margin: 0;padding: 0;&#125;</div><div class="line">body&#123;font: 30px/1.5 "微软雅黑";&#125;</div><div class="line">.left p&#123;background-color: #666;&#125;</div><div class="line">.right p&#123;background-color: #999;&#125;</div><div class="line">.left&#123;float: left;width: 100px;&#125;</div><div class="line">.right&#123;margin-left: 120px;&#125;</div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"parent"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"left"</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">p</span>&gt;</span>left<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"right"</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">p</span>&gt;</span>right<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">p</span>&gt;</span>right<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>Firefox浏览器效果图如下：</p>
+<p><div align="center"><img src="/img/浮动1.jpg" width="400px" height="300px"></div><br>IE6下效果图：</p>
+<p><div align="center"><img src="/img/浮动2.jpg" width="400px" height="300px"></div><br>从上图可以看到，与浮动元素相邻右侧的第一个段落的文本与边缘有3像素的距离，这就是IE6的3像素bug。</p>
+<blockquote>
+<p>IE6的3像素bug：<br>当浮动元素和不浮动的文本相邻时，就会在他们之间产生3像素间隙，不与浮动元素相邻的文本没有这个问题。<br>这个可以在上图看的很清楚。</p>
+</blockquote>
+<p>所以，以上布局方式并不是一个好的布局方式，有些兼容性问题。<br>解决方法：可以加入样式.left{margin-right:-100px;}将右侧文本拉过来。</p>
+<p>如果布局方式是两列宽度都固定，那么可以将右侧向右浮动。</p>
+<p>2.<code>float+margin+fix</code><br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">*&#123;margin: 0;padding: 0;&#125;</div><div class="line">body&#123;font: 30px/1.5 "微软雅黑";&#125;</div><div class="line">.left p&#123;background-color: #666;&#125;</div><div class="line">.right p&#123;background-color: #999;&#125;</div><div class="line">.left&#123;float: left;width: 100px;position: relative;&#125;</div><div class="line">.right-fix&#123;float: right;width: 100%;margin-left: -100px;&#125;</div><div class="line">.right&#123;margin-left: 120px;&#125;</div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"parent"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"left"</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">p</span>&gt;</span>left<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"right-fix"</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"right"</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">p</span>&gt;</span>right<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">p</span>&gt;</span>right<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">		<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span>	</div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>因为将right-fix的width设为100%，它将在left的下面，不在一行显示。为了它们能够同行显示，在right-fix中加入样式<code>margin-left:-100px;</code>。解决了这个问题之后，还有一个问题。right-fix出现在left的下面，并且它的width是100%，它会覆盖在left上面，使left的内容无法选中，为了提高left的层级，我们将left的position设为relative。</p>
+<p>这个布局的兼容性很好，可以兼容IE6/7，但是标签和样式较多。</p>
+<p>3.<code>float+overflow</code><br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">*&#123;margin: 0;padding: 0;&#125;</div><div class="line">body&#123;font: 30px/1.5 "微软雅黑";&#125;</div><div class="line">.left p&#123;background-color: #666;&#125;</div><div class="line">.right p&#123;background-color: #999;&#125;</div><div class="line">.left&#123;float: left;width: 100px;margin-right: 20px;&#125;</div><div class="line">.right&#123;overflow: hidden;&#125;</div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"parent"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"left"</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">p</span>&gt;</span>left<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"right"</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">p</span>&gt;</span>right<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">p</span>&gt;</span>right<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p><code>overflow:hidden;</code>可以使元素生成BFC（块级格式化上下文），BFC可以使元素与外界隔离，在这个例子中，right生成BFC就会与left分离开，不再受到left左浮动的影响。</p>
+<p>这个布局不能兼容IE6，可以使用CSS hack，在right加入<code>*zoom:1;</code>触发haslayout属性。</p>
+<p>4.<code>table</code><br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">*&#123;margin: 0;padding: 0;&#125;</div><div class="line">body&#123;font: 30px/1.5 "微软雅黑";&#125;</div><div class="line">.left p&#123;background-color: #666;&#125;</div><div class="line">.right p&#123;background-color: #999;&#125;</div><div class="line">.parent&#123;display: table;width: 100%;table-layout: fixed;&#125;</div><div class="line">.left,.right&#123;display: table-cell;&#125;</div><div class="line">.left&#123;width: 100px;padding-right: 20px;&#125;</div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"parent"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"left"</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">p</span>&gt;</span>left<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"right"</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">p</span>&gt;</span>right<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">p</span>&gt;</span>right<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p><code>display:table;</code>的特点是table的宽度是它内部单元格（display:table-cell;）的宽度之和。当我们把table的宽度设为100%，那么table的宽度就是她父元素的宽度，将内部一个单元格的宽度固定，那么另一个单元格的宽度就是剩下的部分，这样就产生了自适应宽度的效果。</p>
+<p>单元格上不能应用margin，可以用padding。</p>
+<blockquote>
+<p>table-layout<br>这个属性有三个值：fixed，auto，inherit。fixed是固定宽度布局，auto是自动宽度布局。二者的差别在于计算出表的布局的速度，固定布局速度快。<br>fixed：固定布局不依赖表单元格的内容，而是根据表以及表中列和单元格的width值决定的。<br>auto：自动布局则完全取决于单元格的内容。每得到一个新单元格，可能就要调整一次整个表的布局，只有查看完表的所有内容之后表的布局才能够确定下来。这样就很耗费时间。</p>
+</blockquote>
+<p>这个例子中单元格的宽度不是由内容决定的，所以这里采用固定布局方式。</p>
+<p>这个布局无法兼容IE6/7.</p>
+<p>5.<code>flex</code><br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">*&#123;margin: 0;padding: 0;&#125;</div><div class="line">body&#123;font: 30px/1.5 "微软雅黑";&#125;</div><div class="line">.left p&#123;background-color: #666;&#125;</div><div class="line">.right p&#123;background-color: #999;&#125;</div><div class="line">.parent&#123;display: flex;&#125;</div><div class="line">.left&#123;width: 100px;margin-right: 20px;&#125;</div><div class="line">.right&#123;flex:1;&#125;</div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"parent"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"left"</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">p</span>&gt;</span>left<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"right"</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">p</span>&gt;</span>right<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">p</span>&gt;</span>right<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>无法兼容低版本浏览器。</p>
+<h2 id="多列定宽一列自适应"><a href="#多列定宽一列自适应" class="headerlink" title="###多列定宽一列自适应###"></a>###多列定宽一列自适应###</h2><p>可以根据上面的一列定宽一列自适应来扩展。</p>
+<p>1.<code>float+overflow</code><br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">*&#123;margin: 0;padding: 0;&#125;</div><div class="line">body&#123;font: 30px/1.5 "微软雅黑";&#125;</div><div class="line">.left p,.center p&#123;background-color: #666;&#125;</div><div class="line">.right p&#123;background-color: #999;&#125;</div><div class="line">.left,.center&#123;float: left;width: 100px;margin-right: 20px;&#125;</div><div class="line">.right&#123;overflow: hidden;&#125;</div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"parent"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"left"</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">p</span>&gt;</span>left<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"center"</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">p</span>&gt;</span>left<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"right"</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">p</span>&gt;</span>right<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">p</span>&gt;</span>right<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>其他方式都是类似的。</p>
+<h2 id="一列不定宽一列自适应"><a href="#一列不定宽一列自适应" class="headerlink" title="###一列不定宽一列自适应###"></a>###一列不定宽一列自适应###</h2><p>不定宽的意思是宽度随内容改变或者可以改动（不影响整个布局）。<br>上述一列定宽一列自适应的第一种和第二种布局方式，left宽度改变时，right的设置也要改变，不满足要求；其他三种可以满足。</p>
+<p>上面<code>float+overflow</code>和<code>flex</code>布局方法可以很容易扩展到一列不定宽一列自适应的情况。下面以<code>table</code>来说一下需要注意的地方：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">*&#123;margin: 0;padding: 0;&#125;</div><div class="line">body&#123;font: 30px/1.5 "微软雅黑";&#125;</div><div class="line">.left p&#123;background-color: #666;&#125;</div><div class="line">.right p&#123;background-color: #999;&#125;</div><div class="line">.parent&#123;display: table;width: 100%;table-layout: fixed;&#125;</div><div class="line">.left,.right&#123;display: table-cell;&#125;</div><div class="line">.left&#123;width: 200px;padding-right: 20px;&#125;</div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"parent"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"left"</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">p</span>&gt;</span>left<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"right"</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">p</span>&gt;</span>right<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">p</span>&gt;</span>right<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>这里我们可以只改变left的宽度，不做其他任何改变实现新的布局方式。但是当我们想要表单元格left的宽度随内容改变呢？<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">*&#123;margin: 0;padding: 0;&#125;</div><div class="line">body&#123;font: 30px/1.5 "微软雅黑";&#125;</div><div class="line">.left p&#123;background-color: #666;&#125;</div><div class="line">.right p&#123;background-color: #999;&#125;</div><div class="line">.parent&#123;display: table;width: 100%;&#125;</div><div class="line">.left,.right&#123;display: table-cell;&#125;</div><div class="line">.left&#123;width:0.1%; padding-right: 20px;&#125;</div><div class="line">.left p&#123;width: 200px;&#125;</div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"parent"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"left"</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">p</span>&gt;</span>left<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"right"</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">p</span>&gt;</span>right<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">p</span>&gt;</span>right<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>让内容决定单元格的宽度，那我们就要把table-layout:fixed;去掉，取默认值auto。<br>我们把left的宽度设为0.1%，让内容将单元格撑开。试了一下，不设置单元格的宽度会出现问题，但是现在我还不知道是为什么。<br>还有为什么不把left的宽度设为具体的值？</p>
+</blockquote>
+<h2 id="多列不定宽一列自适应"><a href="#多列不定宽一列自适应" class="headerlink" title="###多列不定宽一列自适应###"></a>###多列不定宽一列自适应###</h2><p>多列不定宽一列自适应根据上面的布局方式很好扩展。</p>
+<h2 id="等分布局"><a href="#等分布局" class="headerlink" title="###等分布局###"></a>###等分布局###</h2><p>每一列的宽度相同，每一列之间的间距相同</p>
+<p>1.<code>float</code><br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">body&#123;font: 30px/1.5 "微软雅黑"; color: #fff;&#125;</div><div class="line">.parent&#123;margin-left: -20px;&#125;</div><div class="line">.column&#123;float: left;width: 25%;padding-left: 20px;box-sizing:border-box;&#125;</div><div class="line">.column p&#123;background-color: #666;&#125;</div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"parent"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"column"</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">p</span>&gt;</span>1<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"column"</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">p</span>&gt;</span>2<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"column"</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">p</span>&gt;</span>3<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"column"</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">p</span>&gt;</span>4<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>float可以实现将列等分，但是加上列之间的间隔后，总的宽度会超出，所以我们需要把每一列和间隔放在一块进行等分，这里box-sizing就起作用了。那么还是多出一个间隔的宽度呀？可以设置margin-left设为负值，来增加width的值。为什么呢？</p>
+<p>因为块级元素默认的宽度是充满其父容器的宽度的，块级元素占的总宽度我们可以根据盒模型计算出来。当将margin-left设为负值的时候，需要增加其他项来和这个负项相抵。当不设width值的时候，width默认为auto，那么此时width的实际值就增大了所设的负边距值。</p>
+<p>这个布局不能兼容IE6/7。</p>
+<p>2.<code>table</code><br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">body&#123;font: 30px/1.5 "微软雅黑"; color: #fff;&#125;</div><div class="line">.parent-fix&#123;margin-left: -20px;&#125;</div><div class="line">.parent&#123;display: table; width: 100%;table-layout: fixed;&#125;</div><div class="line">.column&#123;display: table-cell;padding-left: 20px;&#125;</div><div class="line">.column p&#123;background-color: #666;&#125;</div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"parent-fix"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"parent"</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"column"</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">p</span>&gt;</span>1<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">		<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"column"</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">p</span>&gt;</span>2<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">		<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"column"</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">p</span>&gt;</span>3<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">		<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"column"</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">p</span>&gt;</span>4<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">		<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>table的宽度等于行单元格的总宽度。我们可以把每一列和每一列的间隔当做一个整体，这样可以实现等分，但是这在视觉上等分布局的两侧是不对称的，因为有一边包含了间隔。<br>内部表元素生成矩形框，这些框有内容、内边距和边框，但是没有外边距。这里的间隔用padding实现<br>由于第一点，我们在table的外面加一层div，并让它的margin-left值为-20px，这样就扩展了table的宽度，并在视觉上是对称的。<br>这里体现了table-layout：fixed;的第二点作用：当单元格的width为auto时，它会使单元格宽度一样，这样就实现了等分。<br>这个布局的优点是结构与样式不耦合，不管有几列，都可以实现等分。但是不能兼容低版本浏览器。</p>
+</blockquote>
+<p>3.<code>flex</code><br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">body&#123;font: 30px/1.5 "微软雅黑"; color: #fff;&#125;</div><div class="line">.parent&#123;display: flex;&#125;</div><div class="line">.column&#123;flex:1;&#125;</div><div class="line">.column+.column&#123;padding-left: 20px;&#125;</div><div class="line">.column p&#123;background-color: #666;&#125;</div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"parent"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"column"</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">p</span>&gt;</span>1<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"column"</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">p</span>&gt;</span>2<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"column"</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">p</span>&gt;</span>3<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"column"</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">p</span>&gt;</span>4<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>这里我们为什么没有把每一列和间隔看做一个整体，而是设置了三个间隔？因为flex布局是按剩余内容平分的。<br>这个布局很灵活，样式与结构也没有耦合性，可以实现任意列的等分，缺点就是兼容性问题。</p>
+<h2 id="等高布局"><a href="#等高布局" class="headerlink" title="###等高布局###"></a>###等高布局###</h2><ol>
+<li><code>float</code><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">*&#123;margin: 0;padding: 0;&#125;</div><div class="line">body&#123;font: 30px/1.5 "微软雅黑"; color: #fff;&#125;</div><div class="line">.parent&#123;overflow: hidden;&#125;</div><div class="line">.left,.right&#123;padding-bottom: 9999px;margin-bottom: -9999px;&#125;</div><div class="line">.left&#123;background-color: #666;float: left;width: 100px;margin-right: 20px;&#125;</div><div class="line">.right&#123;background-color: #ddd;overflow: hidden;&#125;</div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"parent"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"left"</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">p</span>&gt;</span>left<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"right"</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">p</span>&gt;</span>right<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">p</span>&gt;</span>right<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>只用float无法实现等高布局，这里我们利用了padding可以显示背景颜色的特性来模拟等高。将padding-bottom设为很大的正值，然后设置margin-bottom为很大的负值，与padding-bottom相抵，也可以理解为将下面的内容拉到上面来，父容器设置overflow:hidden来隐藏超出的内容。这种等高是伪等高。</p>
+<p>2.<code>table</code><br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">*&#123;margin: 0;padding: 0;&#125;</div><div class="line">body&#123;font: 30px/1.5 "微软雅黑"; color: #fff;&#125;</div><div class="line">.parent&#123;display: table;width: 100%;table-layout: fixed;&#125;</div><div class="line">.left&#123;background-color: #666; display: table-cell; width: 100px;padding-right: 20px;&#125;</div><div class="line">.right&#123;background-color: #ddd;display: table-cell;&#125;</div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"parent"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"left"</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">p</span>&gt;</span>left<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"right"</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">p</span>&gt;</span>right<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">p</span>&gt;</span>right<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>table布局的特点：每一列的单元格宽度都相同，每一行的单元格高度都相同。利用这一点可以实现等高布局。但是left设置了padding，会显示出背景颜色，如何让背景颜色不显示在padding上？试了一下background-clip：content-box;属性，但是这样之后两边不是等高了，现在还没想到怎么解决。</p>
+<p>3.<code>flex</code><br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">*&#123;margin: 0;padding: 0;&#125;</div><div class="line">body&#123;font: 30px/1.5 "微软雅黑"; color: #fff;&#125;</div><div class="line">.parent&#123;display: flex;&#125;</div><div class="line">.left&#123;background-color: #666; width: 100px;margin-right: 20px;&#125;</div><div class="line">.right&#123;background-color: #ddd;flex:1;&#125;</div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"parent"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"left"</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">p</span>&gt;</span>left<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"right"</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">p</span>&gt;</span>right<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">p</span>&gt;</span>right<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>设置display：flex;后，内部的algin-items默认为stretch，拉伸状态，自然等高。</p>
+<p>##全屏布局##<br>1.<code>position</code><br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">html,body,.parent&#123;height: 100%;overflow: hidden;&#125;</div><div class="line">.top&#123;background-color: red; position: absolute;left: 0;top: 0;right: 0;height: 100px;&#125;</div><div class="line">.left&#123;background-color: blue;position: absolute;left: 0;top: 100px;bottom: 50px;width: 200px;&#125;</div><div class="line">.right&#123;background-color: yellow;position: absolute;left: 200px;top: 100px;right: 0;bottom: 50px;overflow: auto;&#125;</div><div class="line">.right .inner&#123;min-height: 1000px;&#125;</div><div class="line">.bottom&#123;background-color: green;position: absolute;left: 0;bottom: 0;right: 0;height: 50px;&#125;</div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"parent"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"top"</span>&gt;</span>top<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"left"</span>&gt;</span>left<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"right"</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"inner"</span>&gt;</span>right<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"bottom"</span>&gt;</span>bottom<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>感觉position布局像搭积木的感觉，把每一块都按位置摆放起来。不能兼容IE6。</p>
+<p>2.<code>flex</code><br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">html,body,.parent&#123;height: 100%;overflow: hidden;&#125;</div><div class="line">.parent&#123;display: flex;flex-direction:column;&#125;</div><div class="line">.top&#123;background-color: blue;height: 100px;&#125;</div><div class="line">.bottom&#123;background-color: yellow;height: 50px;&#125;</div><div class="line">.middle&#123;flex:1;display: flex;&#125;</div><div class="line">.left&#123;background-color: red;width: 200px;&#125;</div><div class="line">.right&#123;background-color: green;flex:1;overflow: auto;&#125;</div><div class="line">.right .inner&#123;min-height: 1000px;&#125;</div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"parent"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"top"</span>&gt;</span>top<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"middle"</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"left"</span>&gt;</span>left<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"right"</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"inner"</span>&gt;</span>right<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">		<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"bottom"</span>&gt;</span>bottom<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>IE9及以下无法兼容。</p>
+<p>上面两种方式可以把高度，宽度为固定值的地方换成百分数转化为自适应布局。<br>如果是以内容自适应，那么position布局就不适合了。flex仍然可以满足要求，只要把固定宽度，高度的地方去掉就可以了。</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/HTML-CSS/">HTML CSS</a>
+  </div>
+
+</div>
+
+
+<div class="article-share" id="share">
+
+  <div data-url="http://yoursite.com/2015/08/20/页面布局小结/" data-title="页面布局 | superD&#39;s blog" data-tsina="" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2015/08/15/CSS之absolute/"  title="CSS之absolute">
+ <strong>下一篇：</strong><br/> 
+ <span>CSS之absolute
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section class="comment">
+	<div class="ds-thread"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一列定宽一列自适应"><span class="toc-number">1.</span> <span class="toc-text">###一列定宽一列自适应###</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#多列定宽一列自适应"><span class="toc-number">2.</span> <span class="toc-text">###多列定宽一列自适应###</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#一列不定宽一列自适应"><span class="toc-number">3.</span> <span class="toc-text">###一列不定宽一列自适应###</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#多列不定宽一列自适应"><span class="toc-number">4.</span> <span class="toc-text">###多列不定宽一列自适应###</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#等分布局"><span class="toc-number">5.</span> <span class="toc-text">###等分布局###</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#等高布局"><span class="toc-number">6.</span> <span class="toc-text">###等高布局###</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tags/C-C/" title="C/C++">C/C++<sup>19</sup></a></li>
+		
+			<li><a href="/tags/Javascript/" title="Javascript">Javascript<sup>4</sup></a></li>
+		
+			<li><a href="/tags/CSS-line-height/" title="CSS, line-height">CSS, line-height<sup>1</sup></a></li>
+		
+			<li><a href="/tags/CSS-absolute/" title="CSS,absolute">CSS,absolute<sup>1</sup></a></li>
+		
+			<li><a href="/tags/DOM/" title="DOM">DOM<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Linux-C-C/" title="Linux, C/C++">Linux, C/C++<sup>1</sup></a></li>
+		
+			<li><a href="/tags/linkedlist-C/" title="linkedlist,C++">linkedlist,C++<sup>1</sup></a></li>
+		
+			<li><a href="/tags/HTML-CSS/" title="HTML CSS">HTML CSS<sup>1</sup></a></li>
+		
+			<li><a href="/tags/算法，C-C-，数据结构/" title="算法，C/C++，数据结构">算法，C/C++，数据结构<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+      <li><a href="http://yangjian.me" target="_blank" title="YangJian">Alimon's Blog</a></li>
+      <li><a href="http://zipperary.com/" target="_blank" title="zippera">Zippera's Blog</a></li>
+    </ul>
+</div>
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hi,I&#39;m superd. For now I&#39;m a graduate student in Xidian University. <br/>
+			I&#39;ll share my learning experience with you at this blog.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2628201573 for http://weibo.com/u/2628201573" target="_blank" class="icon-weibo" title="weibo"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://zespia.tw/hexo/" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Pacman">Jacman</a> © 2017 
+		
+		<a href="http://yoursite.com/about" target="_blank" title="superD">superD</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:""};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+
+
+<div id="totop">
+<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+</div>
+
+<script src="/js/totop.js"></script>
+
+
+
+
+  </body>
+</html>
