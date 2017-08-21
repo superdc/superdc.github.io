@@ -86,14 +86,13 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#无依赖的absolute"><span class="toc-number">1.</span> <span class="toc-text">无依赖的absolute</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#absolute的表现"><span class="toc-number">1.1.</span> <span class="toc-text">absolute的表现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#去浮动"><span class="toc-number">1.2.</span> <span class="toc-text">去浮动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#位置跟随"><span class="toc-number">1.3.</span> <span class="toc-text">位置跟随</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#无依赖的absolute的定位"><span class="toc-number">2.</span> <span class="toc-text">无依赖的absolute的定位</span></a></li></ol>
 		
 		</div>
 		
 		<p>#absolute#<br>推荐张大大的视频<a href="http://www.imooc.com/learn/192" target="_blank" rel="external">CSS深入理解之absolute</a>。你是怎么使用<code>position:absolute;</code>的？是不是将要绝对定位的元素的父元素设置为<code>position:relative;</code>，再结合属性<code>left,right,top,bottom</code>来确定该元素的位置？可是张大大一上来就说这是使用absolute的一个误区！快戳视频去看看吧。我在这里小小总结一下，对这些属性的理解应该是遇到的问题越多，解决的问题越多，理解的才会越深刻。现在解决的问题还是太少了…<a id="more"></a></p>
-<p>##无依赖的absolute##<br>视频中说<code>无依赖</code>的意思是：<br>不受relative限制的absolute定位，行为表现上是不是用top/right/bottom/left任何一个属性或使用auto作为值。（这里有一个问题）</p>
-<p>###absolute的表现###</p>
-<blockquote>
+<h2 id="无依赖的absolute"><a href="#无依赖的absolute" class="headerlink" title="无依赖的absolute"></a>无依赖的absolute</h2><p>视频中说<code>无依赖</code>的意思是：<br>不受relative限制的absolute定位，行为表现上是不是用top/right/bottom/left任何一个属性或使用auto作为值。（这里有一个问题）</p>
+<h3 id="absolute的表现"><a href="#absolute的表现" class="headerlink" title="absolute的表现"></a>absolute的表现</h3><blockquote>
 <p>脱离文档流</p>
 <blockquote>
 <p>absolute元素是完全脱离文档流的（这一点与float不同）。那脱离之后他在哪？</p>
@@ -107,11 +106,11 @@
 <blockquote>
 <p>去浮动<br>位置跟随</p>
 </blockquote>
-<p>###去浮动###<br>元素同时设置<code>float:left;</code>和<code>position:absolute;</code>，最终只体现设置为<code>position:absolute;</code>的结果。<br>看下图：</p>
+<h3 id="去浮动"><a href="#去浮动" class="headerlink" title="去浮动"></a>去浮动</h3><p>元素同时设置<code>float:left;</code>和<code>position:absolute;</code>，最终只体现设置为<code>position:absolute;</code>的结果。<br>看下图：</p>
 <p><div align="center"><img src="/img/absolute去浮动_01.jpg" width="400px" height="300px"></div><br>三张图片的默认位置</p>
 <p><div align="center"><img src="/img/absolute去浮动_02.jpg" width="400px" height="300px"></div><br>对其中第二种图片左浮动</p>
 <p><div align="center"><img src="/img/absolute去浮动_03.jpg" width="400px" height="300px"></div><br>对其中第二张图片绝对定位，浮动的效果被去除了<br>我在想是不是因为绝对定位使元素完全脱离文档流而使浮动的效果显现不出来了？</p>
-<p>###位置跟随###<br>元素脱离文档流后，仍在他原来在正常流中的位置上。<br>《CSS权威指南》中提到当绝对定位后元素的<code>left/top/right/bottom</code>值为auto时，元素的位置会和它的静态位置一致。什么是静态位置？就是元素在正常流中原本的位置。</p>
+<h3 id="位置跟随"><a href="#位置跟随" class="headerlink" title="位置跟随"></a>位置跟随</h3><p>元素脱离文档流后，仍在他原来在正常流中的位置上。<br>《CSS权威指南》中提到当绝对定位后元素的<code>left/top/right/bottom</code>值为auto时，元素的位置会和它的静态位置一致。什么是静态位置？就是元素在正常流中原本的位置。</p>
 <p><strong>我认为一个元素设置了绝对浮动后就拥有了<code>left/top/right/bottom</code>这四个属性，而他们的默认值就是auto。也就是说不显示设置这四个值，那么元素的位置就会与他们的静态位置一致，也就表现为位置跟随。这跟张大大说的无依赖的absolute的left/top/right/bottom值不为auto矛盾。</strong></p>
 <blockquote>
 <p>inline/inline-block水平的元素表现</p>
@@ -123,7 +122,7 @@
 <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"http://img.mukewang.com/54447b06000171a002560191.jpg"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"http://img.mukewang.com/54447f4a0001eb7d01910256.jpg"</span> <span class="attr">style</span>=<span class="string">"display:block;"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"http://img.mukewang.com/54447f550001ccb002560191.jpg"</span>&gt;</span></div></pre></td></tr></table></figure>
 <p><div align="center"><img src="/img/absolute跟随_02.jpg" width="200px" height="300px"></div><br>设置其中第二张图片<code>position:absolute;</code></p>
 <p><div align="center"><img src="/img/absolute跟随_01.jpg" width="400px" height="300px"></div><br>它仍在作为块级元素时的原本的位置上</p>
-<p>##无依赖的absolute的定位##<br>在不设置<code>left/top/right/bottom</code>值的情况下怎么定位元素呢？使用margin。这时就是相对于元素的静态位置进行定位了。<br>这样使用的好处是元素设置绝对定位之后完全脱离文档流，不会对正常流中的其他元素造成影响而且不会占据额外的空间。<br>张大大讲了几个应用，的确很开阔思路。</p>
+<h2 id="无依赖的absolute的定位"><a href="#无依赖的absolute的定位" class="headerlink" title="无依赖的absolute的定位"></a>无依赖的absolute的定位</h2><p>在不设置<code>left/top/right/bottom</code>值的情况下怎么定位元素呢？使用margin。这时就是相对于元素的静态位置进行定位了。<br>这样使用的好处是元素设置绝对定位之后完全脱离文档流，不会对正常流中的其他元素造成影响而且不会占据额外的空间。<br>张大大讲了几个应用，的确很开阔思路。</p>
 <p>关于absolute的其他知识等我消化完全再来总结吧。</p>
   
 	</div>
@@ -181,7 +180,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#无依赖的absolute"><span class="toc-number">1.</span> <span class="toc-text">无依赖的absolute</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#absolute的表现"><span class="toc-number">1.1.</span> <span class="toc-text">absolute的表现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#去浮动"><span class="toc-number">1.2.</span> <span class="toc-text">去浮动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#位置跟随"><span class="toc-number">1.3.</span> <span class="toc-text">位置跟随</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#无依赖的absolute的定位"><span class="toc-number">2.</span> <span class="toc-text">无依赖的absolute的定位</span></a></li></ol>
  
   </div>
 
@@ -196,23 +195,19 @@
 	<p class="asidetitle">标签</p>
 		<ul class="clearfix">
 		
-			<li><a href="/tags/C-C/" title="C/C++">C/C++<sup>19</sup></a></li>
-		
-			<li><a href="/tags/Javascript/" title="Javascript">Javascript<sup>4</sup></a></li>
+			<li><a href="/tags/CSS-absolute/" title="CSS,absolute">CSS,absolute<sup>1</sup></a></li>
 		
 			<li><a href="/tags/CSS-line-height/" title="CSS, line-height">CSS, line-height<sup>1</sup></a></li>
 		
-			<li><a href="/tags/CSS-absolute/" title="CSS,absolute">CSS,absolute<sup>1</sup></a></li>
-		
 			<li><a href="/tags/DOM/" title="DOM">DOM<sup>1</sup></a></li>
 		
-			<li><a href="/tags/Linux-C-C/" title="Linux, C/C++">Linux, C/C++<sup>1</sup></a></li>
-		
-			<li><a href="/tags/linkedlist-C/" title="linkedlist,C++">linkedlist,C++<sup>1</sup></a></li>
+			<li><a href="/tags/Javascript/" title="Javascript">Javascript<sup>1</sup></a></li>
 		
 			<li><a href="/tags/HTML-CSS/" title="HTML CSS">HTML CSS<sup>1</sup></a></li>
 		
-			<li><a href="/tags/算法，C-C-，数据结构/" title="算法，C/C++，数据结构">算法，C/C++，数据结构<sup>1</sup></a></li>
+			<li><a href="/tags/算法，C-C-，数据结构/" title="算法，C/C++，数据结构">算法，C/C++，数据结构<sup>0</sup></a></li>
+		
+			<li><a href="/tags/linkedlist-C/" title="linkedlist,C++">linkedlist,C++<sup>0</sup></a></li>
 		
 		</ul>
 </div>
